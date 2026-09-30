@@ -4,6 +4,8 @@ import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+// Resolve Playwright's installed browser cache before scoping Playground's homedir.
+const { chromium } = await import('@playwright/test');
 const runtime = await fs.mkdtemp(path.join(root, '.runtime-'));
 // CLI v3 hardcodes its cache beneath os.homedir(). Scope this process-only API to
 // our disposable workspace; never mutate HOME or a user's shared runtime cache.
@@ -24,7 +26,6 @@ try {
    console.log(JSON.stringify(report, null, 2));
    if (report.checks.some(check => !check.pass)) failure = true;
    if (trash === 30 && process.env.GCS_BROWSER_TESTS === '1') {
-    const { chromium } = await import('@playwright/test');
     const { default: AxeBuilder } = await import('@axe-core/playwright');
     const browser = await chromium.launch({headless:true, ...(process.env.GCS_BROWSER_CHANNEL ? {channel:process.env.GCS_BROWSER_CHANNEL} : {}), ...(process.env.GCS_CHROME_PATH ? {executablePath:process.env.GCS_CHROME_PATH} : {})});
     try {

@@ -54,3 +54,7 @@ Machine-readable outputs are written under ignored `test-results/`. The harness 
 ## Remaining release gates
 
 Actual authorized GymCore integration, licensed capabilities/entitlements, real WooCommerce product/cart/checkout/order/payment flows, MySQL/MariaDB, multisite, screen-reader/manual keyboard coverage of all templates, translated/RTL content, full native Plugin Check, and final Theme/Plugin Directory review remain separate gates. Axe smoke does not establish WCAG conformance. WooCommerce activation/coexistence is not payment or commerce certification. The final WP7.1.2/PHP8.3.32 run exercises the actual uninstall entrypoint twice: default retains options/manifest/content; opt-in removes starter options only and preserves content. Earlier minimum/PHP8.5/WooCommerce matrix runs predate those four additional assertions and retain their precise 49/51 counts.
+
+## CI portability correction
+
+The first remote run passed WordPress assertions but could not find Playwright Chromium because the isolated Playground homedir also changed the browser-cache lookup. The harness now resolves Playwright before changing the process-local Playground cache base. No system HOME setting is changed. CI uses the official checkout v7.0.1 commit pin and cancels superseded branch runs; final remote outcomes are reported with the PR.
