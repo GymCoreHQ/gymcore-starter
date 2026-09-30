@@ -1,0 +1,16 @@
+/*
+Theme Name: GymCore Starter
+Author: GymCoreHQ
+Description: An editable, accessible-minded block theme for independent training communities. Includes native WordPress patterns, responsive navigation, and dark and light styles. No plugins required.
+Version: 0.1.0
+Requires at least: 7.0
+Tested up to: 7.1
+Requires PHP: 8.3
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: gymcore-starter
+Tags: block-patterns, block-styles, full-site-editing, custom-colors, custom-logo, editor-style, featured-images, wide-blocks, translation-ready, blog
+
+Copyright (C) 2026 GymCoreHQ. All original theme code is GPL-2.0-or-later.
+Presentation CSS is in theme.json so WordPress loads it in the editor and front end.
+*/

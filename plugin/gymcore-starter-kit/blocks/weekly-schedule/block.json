@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "gymcore-starter/weekly-schedule",
+  "version": "0.1.0",
+  "title": "Weekly class schedule",
+  "category": "widgets",
+  "icon": "calendar-alt",
+  "description": "Displays published, active weekly GymCore classes in the site time zone.",
+  "textdomain": "gymcore-starter-kit",
+  "attributes": {
+    "programId": { "type": "integer", "default": 0 },
+    "locationId": { "type": "integer", "default": 0 },
+    "day": { "type": "string", "default": "" },
+    "headingLevel": { "type": "integer", "default": 3 }
+  },
+  "supports": { "html": false, "align": ["wide", "full"], "spacing": { "margin": true, "padding": true } },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css"
+}

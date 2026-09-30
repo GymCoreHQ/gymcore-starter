@@ -1,0 +1,261 @@
+{
+  "$schema": "https://schemas.wp.org/wp/7.0/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "useRootPaddingAwareAlignments": true,
+    "layout": {
+      "contentSize": "760px",
+      "wideSize": "1200px"
+    },
+    "color": {
+      "defaultPalette": false,
+      "palette": [
+        {
+          "slug": "base",
+          "color": "#10151f",
+          "name": "Base"
+        },
+        {
+          "slug": "surface",
+          "color": "#1b2535",
+          "name": "Surface"
+        },
+        {
+          "slug": "contrast",
+          "color": "#f5f7fc",
+          "name": "Contrast"
+        },
+        {
+          "slug": "muted",
+          "color": "#bac7da",
+          "name": "Muted"
+        },
+        {
+          "slug": "accent",
+          "color": "#91baff",
+          "name": "Accent"
+        },
+        {
+          "slug": "action",
+          "color": "#224dc8",
+          "name": "Action"
+        },
+        {
+          "slug": "white",
+          "color": "#ffffff",
+          "name": "White"
+        }
+      ]
+    },
+    "spacing": {
+      "units": [
+        "px",
+        "rem",
+        "em",
+        "%",
+        "vw"
+      ],
+      "spacingSizes": [
+        {
+          "slug": "20",
+          "size": "0.75rem",
+          "name": "Small"
+        },
+        {
+          "slug": "30",
+          "size": "1.25rem",
+          "name": "Medium"
+        },
+        {
+          "slug": "40",
+          "size": "2rem",
+          "name": "Large"
+        },
+        {
+          "slug": "50",
+          "size": "3rem",
+          "name": "Extra large"
+        },
+        {
+          "slug": "60",
+          "size": "clamp(3rem, 7vw, 6rem)",
+          "name": "Section"
+        }
+      ]
+    },
+    "typography": {
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "slug": "system",
+          "name": "System sans",
+          "fontFamily": "system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif"
+        }
+      ],
+      "fontSizes": [
+        {
+          "slug": "small",
+          "name": "Small",
+          "size": "0.875rem"
+        },
+        {
+          "slug": "medium",
+          "name": "Medium",
+          "size": "1.125rem"
+        },
+        {
+          "slug": "large",
+          "name": "Large",
+          "size": "1.5rem"
+        },
+        {
+          "slug": "x-large",
+          "name": "Extra large",
+          "size": "2.5rem",
+          "fluid": {
+            "min": "2rem",
+            "max": "2.5rem"
+          }
+        },
+        {
+          "slug": "display",
+          "name": "Display",
+          "size": "4.5rem",
+          "fluid": {
+            "min": "2.75rem",
+            "max": "4.5rem"
+          }
+        }
+      ]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var:preset|color|base",
+      "text": "var:preset|color|contrast"
+    },
+    "spacing": {
+      "blockGap": "1.5rem",
+      "padding": {
+        "left": "clamp(1rem, 4vw, 3rem)",
+        "right": "clamp(1rem, 4vw, 3rem)"
+      }
+    },
+    "typography": {
+      "fontFamily": "var:preset|font-family|system",
+      "fontSize": "var:preset|font-size|medium",
+      "lineHeight": "1.65"
+    },
+    "elements": {
+      "heading": {
+        "typography": {
+          "fontWeight": "750",
+          "lineHeight": "1.12",
+          "letterSpacing": "-0.035em"
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontSize": "var:preset|font-size|display"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontSize": "var:preset|font-size|x-large"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontSize": "var:preset|font-size|large"
+        }
+      },
+      "link": {
+        "color": {
+          "text": "var:preset|color|accent"
+        },
+        "typography": {
+          "textDecoration": "underline"
+        },
+        ":hover": {
+          "typography": {
+            "textDecoration": "none"
+          }
+        }
+      },
+      "button": {
+        "color": {
+          "background": "var:preset|color|action",
+          "text": "var:preset|color|white"
+        },
+        "border": {
+          "radius": "4px"
+        },
+        "spacing": {
+          "padding": {
+            "top": "0.8rem",
+            "bottom": "0.8rem",
+            "left": "1.4rem",
+            "right": "1.4rem"
+          }
+        },
+        "typography": {
+          "fontWeight": "650",
+          "lineHeight": "1.4"
+        }
+      }
+    },
+    "blocks": {
+      "core/site-title": {
+        "typography": {
+          "fontSize": "1.25rem",
+          "fontWeight": "750"
+        },
+        "elements": {
+          "link": {
+            "color": {
+              "text": "var:preset|color|contrast"
+            },
+            "typography": {
+              "textDecoration": "none"
+            }
+          }
+        }
+      },
+      "core/navigation": {
+        "typography": {
+          "fontSize": "1rem"
+        },
+        "elements": {
+          "link": {
+            "color": {
+              "text": "var:preset|color|contrast"
+            }
+          }
+        }
+      },
+      "core/post-title": {
+        "elements": {
+          "link": {
+            "color": {
+              "text": "var:preset|color|contrast"
+            }
+          }
+        }
+      }
+    },
+    "css": ":where(a, button, input, textarea, select, summary):focus-visible{outline:3px solid var(--wp--preset--color--accent);outline-offset:4px} :where(button, .wp-block-button__link, .wp-block-navigation-item__content, summary){min-height:44px} .wp-block-navigation-item__content{display:inline-flex;align-items:center} .wp-block-navigation__responsive-container.is-menu-open{padding:2rem} .wp-block-navigation__responsive-container-open,.wp-block-navigation__responsive-container-close{min-width:44px;min-height:44px} .wp-block-post-content a{text-underline-offset:0.18em} .wp-block-post-title,.wp-block-site-title{overflow-wrap:anywhere} .wp-block-details summary{cursor:pointer} .wp-block-site-logo img{height:auto} @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}"
+  },
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    }
+  ]
+}

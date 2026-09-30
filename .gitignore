@@ -1,0 +1,11 @@
+/node_modules/
+/vendor/
+/dist/
+/artifacts/
+/.playground/
+.DS_Store
+*.log
+.env*
+/.runtime-*/
+/test-results/
+/playwright-report/

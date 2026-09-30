@@ -1,0 +1,19 @@
+{
+  "name": "gymcore-starter",
+  "version": "0.1.0",
+  "private": true,
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "test": "python3 tools/audit.py",
+    "package": "python3 tools/package.py",
+    "test:wordpress": "node tests/wordpress.mjs"
+  },
+  "devDependencies": {
+    "@wp-playground/cli": "3.1.52",
+    "@playwright/test": "1.58.2",
+    "@axe-core/playwright": "4.11.1"
+  },
+  "overrides": {
+    "qs": "6.16.0"
+  }
+}
