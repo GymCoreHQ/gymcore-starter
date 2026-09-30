@@ -52,3 +52,5 @@ Playground downloads official WordPress/PHP resources into isolated test directo
 - [Security reporting](SECURITY.md)
 
 Code is GPL-2.0-or-later; see [LICENSE](LICENSE). The original source-site images, fonts and logos are deliberately excluded. Names and trademarks remain their owners' property. No automated deployment, privileged workflow or WordPress.org publishing is configured.
+
+Additional verification: [multisite](docs/multisite.md), [translation readiness](docs/translation-review.md), and [optional canonical GymCore integration](docs/canonical-integration.md).

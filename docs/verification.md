@@ -20,3 +20,7 @@ The core-only theme and draft setup require no GymCore installation. The dynamic
 Applicable GymCore repository/design/WooCommerce skills, WooCommerce architecture/coding/security/testing/API/UX references, global instructions and source plugin CLAUDE instructions were reviewed. The parent supplied the canonical WordPress router, project triage, block-theme, patterns, block-development, plugin-development, directory-guideline and Playground skills; these and their relevant references were reviewed before finalization. Their deterministic detectors identify the one block theme and one custom block in this multi-package layout.
 
 Final public release remains gated by [release-checklist.md](release-checklist.md), including fresh official directory-tool/manual reviews and the owner's explicit publication authorization. Do not infer public-readiness from a private repository or a passing smoke suite.
+
+## Follow-up verification
+
+See [multisite lifecycle](multisite.md), [translation readiness](translation-review.md), and [authorized canonical integration](canonical-integration.md) for the additional scoped checks and explicit remaining limits. These extend the original baseline above; they do not certify directory acceptance or full commerce/entitlement compatibility.

@@ -230,7 +230,7 @@ function admin_page(): void {
 		<ul>
 		<?php foreach ( $manifest['pages'] ?? array() as $id ) : ?>
 			<?php if ( get_post( $id ) && current_user_can( 'edit_post', $id ) ) : ?>
-			<li><a href="<?php echo esc_url( get_edit_post_link( $id ) ); ?>"><?php echo esc_html( get_the_title( $id ) ); ?></a> — <?php echo esc_html( get_post_status( $id ) ); ?></li>
+			<li><a href="<?php echo esc_url( get_edit_post_link( $id ) ); ?>"><?php echo esc_html( get_the_title( $id ) ); ?></a> — <?php echo esc_html( get_post_status_object( get_post_status( $id ) )->label ?? '' ); ?></li>
 			<?php endif; ?>
 		<?php endforeach; ?>
 		</ul>

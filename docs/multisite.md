@@ -1,0 +1,9 @@
+# Multisite verification — 2026-09-30
+
+`npm run test:multisite` creates a disposable WordPress 7.1.2 / PHP 8.3.32 / SQLite-WASM network with two fictional sites. No existing database or production configuration is used. Playground's internal site URL is `http://multisite.example.test` because WordPress network setup rejects explicit ports; the listener remains loopback on port 9487 (override `GCS_MULTISITE_PORT`).
+
+All 21 assertions pass: network activation creates no drafts; each site independently opts into four drafts; manifests and ownership tokens remain isolated; repeated import is idempotent; resetting the subsite preserves main-site content; a subsite administrator cannot import on the main site; the block theme activates on both sites; deactivation preserves data; network uninstall honors each site's option-removal choice and never deletes content. The calling site's context is restored after uninstall.
+
+The regression initially failed because the uninstall entrypoint handled only the current site. It now visits site IDs in batches of 100 and checks each site's own opt-in. A `finally` block restores site context after each visit. The default retains options and content. There is no network-wide override that silently opts sites into cleanup.
+
+Network administrators install/network-enable the theme and can network-activate the plugin using standard WordPress controls. Site administrators manage their own settings and content. The plugin does not add a network settings screen. Large networks, multi-network setups, subdomain routing, domain mapping, native MySQL/MariaDB and network browser workflows remain untested. Batched queries bound memory, but very large synchronous network uninstall operations may need an adequate execution time limit; no background destructive cleanup is scheduled.

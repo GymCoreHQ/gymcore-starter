@@ -44,3 +44,11 @@ jobs:
           GCS_WOO_TESTS: ${{ matrix.woo || '0' }}
           GCS_WP_VERSION: ${{ matrix.wp }}
           GCS_PHP_VERSION: ${{ matrix.php }}
+  multisite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: npm ci --ignore-scripts
+      - run: npm run test:multisite

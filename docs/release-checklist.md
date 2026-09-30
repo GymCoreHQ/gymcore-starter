@@ -8,12 +8,15 @@ This repository is a private review candidate. A green local check or private pu
 - [ ] Recheck current WordPress theme/plugin directory rules and release versions against official sources on submission day.
 - [ ] Theme Check and Plugin Check on real current WordPress; review every required, recommended and manual finding.
 - [ ] Confirm minimum and latest WP/PHP matrix plus actual supported GymCore and WooCommerce combinations; use MySQL/MariaDB in addition to SQLite/WASM.
-- [ ] Real authorized GymCore activation, settings, class/taxonomy updates and schedule behavior. No test fixture substitutes for this.
+- [x] Real authorized GymCore activation and canonical published weekly class/taxonomy rendering checked against committed source a27215de on WordPress7.1.2/PHP8.3.32/WooCommerce11.1.2. See canonical-integration.md.
+- [ ] Broader GymCore settings/editing flows and licensed features remain unverified; no fixture substitutes for these.
 - [ ] Review Cart/Checkout Blocks, HPOS, products and account templates with the installed commerce stack; no financial transactions against live gateways.
 - [ ] Full keyboard and assistive-technology review of all templates, editor controls, long titles, pagination, comments, forms, mobile/zoom/RTL and both style variations. Do not add accessibility-ready tag until reviewed.
 - [ ] Theme Unit Test data; block serialization and Site Editor saves; editor/frontend parity; user-edited template upgrade behavior.
-- [ ] Multisite activation/settings/uninstall policy; currently only single-site behavior is targeted.
-- [ ] Translation POT/JS JSON catalogs and locale/RTL smoke tests; final screenshot and readme/header consistency.
+- [x] Two-site multisite activation, site-isolated setup/reset, capabilities and per-site opt-in uninstall:21 assertions pass. See multisite.md.
+- [ ] Large networks, subdomains/domain mapping and native database multisite coverage.
+- [x] Translation extraction and synthetic MO/Jed JSON format checks. See translation-review.md.
+- [ ] Real locale loading, translated content review and RTL browser tests; final screenshot and readme/header consistency.
 - [ ] Fresh secret, source-site residue, dependency/license and packaged-ZIP review; ensure dev/source repositories never enter artifacts.
 - [ ] Run CI remotely and resolve failures. Require review before merge; no automatic deployment or publication.
 - [ ] Owner approves visibility change, final slug and WordPress.org submission. Neither is part of the current authorization.

@@ -1,4 +1,4 @@
-# Independent pre-push review
+# Initial independent pre-push review
 
 Reviewed 2026-09-30 by a separate source/security reviewer. **No unresolved security, sanitization, license-text or packaging blocker identified for private review.** This is not authorization or certification for public release or WordPress.org submission.
 
@@ -35,3 +35,9 @@ The final archive inspection found no hidden/provider files, git metadata, sourc
 The owner supplied the runtime evidence; this reviewer inspected the final verification report but did not independently rerun its full runtime matrix. It distinguishes the final 57 assertions, earlier 49/51-check matrix runs, browser/axe smoke and successful Theme Check from the failed Playground Plugin Check attempt. Synthetic GymCore schema fixtures remain clearly labeled; they do not prove real authorized GymCore compatibility or licensed features. Native Plugin Check, real GymCore integration, full commerce flows, MySQL/MariaDB, multisite, manual accessibility and directory approval remain release gates.
 
 The parent must stage this revised report and the final runtime/release-checklist documentation before commit. No implementation files were changed by this reviewer.
+
+## Follow-up scope
+
+The initial review above describes the original candidate. Follow-up verification and fixes are documented in canonical-integration.md, multisite.md and translation-review.md. The actual canonical schedule integration and scoped two-site lifecycle checks now pass. Native static Plugin Check recovery is distinct from full runtime/MySQL checks. Current archive hashes are generated in ignored `dist/manifest.json`; the original table above remains a historical record and is superseded after follow-up application changes.
+
+An independent reviewer inspected the follow-up diff and identified a false-green canonical fixture-blocker path; that harness now fails explicitly when fixture setup is blocked. Multisite uninstall and translated status-label changes had no security/sanitization finding. Final exact-commit review and CI status are recorded in the pull request.

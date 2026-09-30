@@ -6,7 +6,8 @@
   "scripts": {
     "test": "python3 tools/audit.py",
     "package": "python3 tools/package.py",
-    "test:wordpress": "node tests/wordpress.mjs"
+    "test:wordpress": "node tests/wordpress.mjs",
+    "test:multisite": "node tests/multisite.mjs"
   },
   "devDependencies": {
     "@wp-playground/cli": "3.1.52",
