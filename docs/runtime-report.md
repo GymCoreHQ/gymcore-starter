@@ -57,4 +57,4 @@ Actual authorized GymCore integration, licensed capabilities/entitlements, real 
 
 ## CI portability correction
 
-The first remote run passed WordPress assertions but could not find Playwright Chromium because the isolated Playground homedir also changed the browser-cache lookup. The harness now resolves Playwright before changing the process-local Playground cache base. No system HOME setting is changed. CI uses the official checkout v7.0.1 commit pin and cancels superseded branch runs; final remote outcomes are reported with the PR.
+The first remote run passed WordPress assertions but could not find Playwright Chromium because the isolated Playground homedir also changed the browser-cache lookup. The harness now resolves Playwright before changing the process-local Playground cache base. No system HOME setting is changed. CI uses the official checkout v7.0.1 commit pin, runs once per pull-request event and cancels superseded runs; final remote outcomes are reported with the PR.

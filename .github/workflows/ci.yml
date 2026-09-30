@@ -1,8 +1,6 @@
 name: Starter checks
 on:
   pull_request:
-  push:
-    branches: ['hermes/**']
 concurrency:
   group: starter-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
