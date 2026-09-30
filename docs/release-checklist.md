@@ -6,8 +6,10 @@ This repository is a private review candidate. A green local check or private pu
 
 - [ ] Human review of branding, name availability, authorship and GPL redistribution authority; retain source attribution/provenance.
 - [ ] Recheck current WordPress theme/plugin directory rules and release versions against official sources on submission day.
-- [ ] Theme Check and Plugin Check on real current WordPress; review every required, recommended and manual finding.
-- [ ] Confirm minimum and latest WP/PHP matrix plus actual supported GymCore and WooCommerce combinations; use MySQL/MariaDB in addition to SQLite/WASM.
+- [x] Theme Check and native PHP/MySQL Plugin Check on WordPress 7.1.2: automated checks pass; see runtime-report.md and translation-review.md.
+- [ ] Complete manual directory review and repeat official checks on submission-day versions.
+- [x] Native MySQL 8.4.11 / PHP 8.5.7 Plugin Check fixture completed in addition to the documented SQLite/WASM matrix.
+- [ ] Broaden minimum/latest supported GymCore and WooCommerce combinations; the native MySQL check does not establish full commerce compatibility.
 - [x] Real authorized GymCore activation and canonical published weekly class/taxonomy rendering checked against committed source a27215de on WordPress7.1.2/PHP8.3.32/WooCommerce11.1.2. See canonical-integration.md.
 - [ ] Broader GymCore settings/editing flows and licensed features remain unverified; no fixture substitutes for these.
 - [ ] Review Cart/Checkout Blocks, HPOS, products and account templates with the installed commerce stack; no financial transactions against live gateways.

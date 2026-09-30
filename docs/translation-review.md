@@ -37,7 +37,7 @@ Successful review outputs used `test-results/i18n/gymcore-starter.pot` and `gymc
 
 ## Native Plugin Check recovery and environment inspection
 
-Native PHP 8.5.7 has `mysqli`, `pdo_mysql`, `pdo_sqlite`, `sqlite3`, `intl` and `mbstring`; PHP 8.2.31 is also available for development tools. No MySQL/MariaDB server/client was found in the checked Homebrew/Applications executable locations. Standard Local.app and Local lightning-services locations are absent. Docker CLI exists but its configured desktop socket is absent; no daemon was started and no services, containers, existing site files, credentials or databases were changed/read. A new disposable database was created for the authorized follow-up below.
+Native PHP 8.5.7 has `mysqli`, `pdo_mysql`, `pdo_sqlite`, `sqlite3`, `intl` and `mbstring`; PHP 8.2.31 is also available for development tools. Initially no native MySQL/MariaDB server/client was found in the checked Homebrew/Applications executable locations, standard Local.app locations were absent, and Docker's socket was unavailable. That led to the SQLite static-check fallback below. The owner subsequently started Docker and explicitly authorized the isolated MySQL follow-up; the final MySQL result supersedes the earlier environment blocker.
 
 **Executed successfully:** a fresh native fixture under `/tmp/gcs-native-pcp/wordpress` used official WordPress **7.1.2**, SQLite Database Integration **3.0.2**, WP-CLI **2.12.0**, Plugin Check **2.1.0**, and native PHP **8.5.7**. The first extraction attempt hit PHP's default memory limit; the fresh download completed with a 512 MB command-local limit. No HTTP server or database daemon was started. Only fictional fixture configuration and the starter/official checking packages were installed. WordPress was installed using CLI with outgoing installation email disabled.
 
@@ -52,6 +52,39 @@ WP_CLI_CACHE_DIR=/tmp/gcs-native-pcp/cache /opt/homebrew/bin/php \
   plugin check gymcore-starter-kit --format=json
 ```
 
-The command-local error mask omits PHP `E_DEPRECATED` notices from WP-CLI's older dependencies on PHP 8.5; no PCP result code or warning was suppressed. Raw stdout/stderr are retained temporarily as `/tmp/gcs-native-pcp/static-php85-result.txt` and `static-php85-stderr.txt`. These runtime tools/databases are not distributed. Full native PHP/MySQL Plugin Check and runtime-check coverage remain separate release gates.
+The command-local error mask omits PHP `E_DEPRECATED` notices from WP-CLI's older dependencies on PHP 8.5; no PCP result code or warning was suppressed. Raw stdout/stderr are retained temporarily as `/tmp/gcs-native-pcp/static-php85-result.txt` and `static-php85-stderr.txt`. These runtime tools/databases are not distributed.
+
+## Full native PHP/MySQL Plugin Check — passed
+
+After explicit owner authorization, Docker **29.8.0** was confirmed running. A single task-owned disposable container used the official `docker.io/library/mysql:8.4` image pinned to digest `sha256:6ea90827b1100f8f2ae306a539f86d2c264a26ed435a2a9f75551dd5c3aeb242`; its actual server was **MySQL Community Server 8.4.11, Linux aarch64**. The database lived on a 1 GiB `/var/lib/mysql` tmpfs, with only **127.0.0.1:19487 → 3306** published. No named volume or custom network was created. Other containers, volumes, security settings and credentials were untouched.
+
+A separate fresh fixture at `/tmp/gcs-mysql-pcp/wordpress` used WordPress **7.1.2**, native PHP **8.5.7**, WP-CLI **2.12.0**, and official Plugin Check **2.1.0**. No SQLite drop-in, existing site config, customer data or production credentials were copied. Only generated disposable database credentials and fictional installation data were used. Both Plugin Check and the starter were active. The starter's ten copied package files were verified byte-for-byte against commit **`5b8fadef50c66dda5847eebbca9b6ffcf1b783c0`**.
+
+The command loaded Plugin Check's `cli.php` before WordPress. A read-only observer confirmed `CLI_Runner`, `initialized_early: true`, and **29 static plus 5 runtime checks selected**. The five runtime check IDs were:
+
+- `enqueued_scripts_size`
+- `enqueued_styles_size`
+- `enqueued_styles_scope`
+- `enqueued_scripts_scope`
+- `non_blocking_scripts`
+
+**Result: exit 0, “Checks complete. No errors found,” zero error/warning records, and empty stderr.** Default stable checks ran; no check exclusions, ignored result codes, severity overrides, AI service or experimental checks were requested. The PHP deprecation mask explained above applies only to tool dependency notices, not Plugin Check's result filtering.
+
+Exact command:
+
+```sh
+WP_CLI_CACHE_DIR=/tmp/gcs-mysql-pcp/cache php \
+  -d memory_limit=512M -d error_reporting=24575 /tmp/gcs-i18n-wp-cli.phar \
+  plugin check gymcore-starter-kit \
+  --require=/tmp/gcs-mysql-pcp/wordpress/wp-content/plugins/plugin-check/cli.php \
+  --require=/tmp/gcs-mysql-pcp/observe.php \
+  --skip-packages --path=/tmp/gcs-mysql-pcp/wordpress --format=json
+```
+
+Keep `plugin check` immediately after the PHAR: the current Plugin Check CLI identifies the command through the initial argv positions. The observer only records the public check list, runner initialization state and versions; it does not modify checks or results.
+
+Post-check verification confirmed the original `gcs_` fixture prefix restored, **zero `wp_pc_*` tables**, no remaining `object-cache.php` drop-in, and the starter still active. The task-owned `gcs-pcp-mysql-20260930-5b8fade` container was then removed with its own storage and verified absent. The generated MySQL environment file and fresh fixture `wp-config.php` were deleted. No service remains from this test. The public Docker image cache was retained so other authorized work can reuse it.
+
+Sanitized temporary evidence remains under `/tmp/gcs-mysql-pcp/`: `enabled-checks.json`, `full-result.txt`, `full-stderr.txt`, and `cleanup-result.json`. The database and generated credential files do not remain. **The full native MySQL Plugin Check gate is now passed for this exact package and matrix.** This finite tool run is not WordPress.org approval, linguistic validation, full RTL/manual accessibility testing, broad database-version certification, or evidence of every commerce/integration workflow.
 
 Reviewed canonical local skills: `wp-block-development`, `wp-block-themes`, `wp-plugin-development`, and `wp-patterns/references/pattern-registration.md` from the installed WordPress agent-skills catalog. Official references checked 2026-09-30: [make-pot](https://developer.wordpress.org/cli/commands/i18n/make-pot/), [make-json](https://developer.wordpress.org/cli/commands/i18n/make-json/), and [wp_set_script_translations](https://developer.wordpress.org/reference/functions/wp_set_script_translations/).

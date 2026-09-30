@@ -24,3 +24,5 @@ Final public release remains gated by [release-checklist.md](release-checklist.m
 ## Follow-up verification
 
 See [multisite lifecycle](multisite.md), [translation readiness](translation-review.md), and [authorized canonical integration](canonical-integration.md) for the additional scoped checks and explicit remaining limits. These extend the original baseline above; they do not certify directory acceptance or full commerce/entitlement compatibility.
+
+The authorized native MySQL follow-up also completed: Plugin Check 2.1.0 on WordPress 7.1.2 / PHP 8.5.7 / MySQL 8.4.11 selected 29 static and 5 runtime checks with early initialization and returned zero findings. This supersedes the original environment blocker; see translation-review.md for exact command, isolation, cleanup and remaining manual release gates.
