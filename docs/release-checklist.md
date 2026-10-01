@@ -11,7 +11,7 @@ This repository is a private review candidate. A green local check or private pu
 - [x] This candidate has current static Plugin Check and Theme Check results; see directory-readiness.md for the intentional private-catalog warning and exact package hashes.
 - [ ] Rerun full native MySQL Plugin Check on this final candidate when Docker execution is healthy; review the private-catalog loader warning for directory submission.
 - [ ] Complete manual directory review and repeat official checks on submission-day versions.
-- [x] Native MySQL 8.4.11 / PHP 8.5.7 Plugin Check fixture completed in addition to the documented SQLite/WASM matrix.
+- [x] Historical merged-package native MySQL 8.4.11 / PHP 8.5.7 Plugin Check fixture completed; this is not a current-package runtime pass.
 - [ ] Broaden minimum/latest supported GymCore and WooCommerce combinations; the native MySQL check does not establish full commerce compatibility.
 - [x] Real authorized GymCore activation and canonical published weekly class/taxonomy rendering checked against committed source a27215de on WordPress7.1.2/PHP8.3.32/WooCommerce11.1.2. See canonical-integration.md.
 - [ ] Broader GymCore settings/editing flows and licensed features remain unverified; no fixture substitutes for these.

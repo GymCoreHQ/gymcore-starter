@@ -45,7 +45,7 @@ not-found response would not reserve a slug or establish trademark rights.
 
 ## Gate checklist
 
-Status describes the baseline evidence unless the row explicitly says locally inspected. Results from other work in this release branch must be linked before marking new gates complete.
+Status incorporates linked follow-up results from this branch. Initial desk-review observations above remain historical.
 
 | Gate | Status / action required |
 | --- | --- |
@@ -55,27 +55,27 @@ Status describes the baseline evidence unless the row explicitly says locally in
 | Directory identity and names | **Contributor public identity verified** through the official linked profile. **Owner gates remain:** official GymCore name/mark ownership, current slug/name availability, selected submitting account, authenticated access and publication authorization. Organization access or a public profile does not establish these. No name is reserved. |
 | Theme attribution and resources | Readme now lists the original screenshot/code resources. **Owner sign-off pending** on authorship/redistribution; preserve any discovered copied attribution. |
 | Plugin source/metadata | All current JS is readable source; keep complete source available. Verify final header/readme/version/tag/text-domain parity. No artificial required Woo dependency; its base functions work without Woo or GymCore. |
-| Automated directory tools | Existing Theme Check and native PHP/MySQL Plugin Check passes are documented. **Repeat final-package checks after release changes**, with exact tool versions and zero unexplained errors/warnings. Do not call the old SQLite PCP failure a new blocker; the later native result supersedes it. |
-| Minimum/current runtime | Existing matrix is finite. Test exact claimed minimum or narrow the declaration; add current supported PHP patches where available and record actual versions. |
+| Automated directory tools | Final ZIP static Plugin Check has zero errors and one explained private-catalog warning; Theme Check has one INFO. Full current-package MySQL runtime checks remain pending Docker recovery. See [directory results](directory-readiness.md); earlier MySQL results concern different package bytes. |
+| Minimum/current runtime | Exact WordPress 7.0 / PHP 8.3.32 passed 57 assertions; see [directory results](directory-readiness.md). Current supported PHP patches and broader combinations remain unverified. |
 | User editing/lifecycle | Require current Site Editor save/reload, edited template/style preservation across updates, setup/reset authorization and uninstall checks. Network coverage remains scoped. |
 | Integrations | Canonical authorized schedule evidence exists. Broader commerce/licensed capability claims need their own checks. Never substitute an entitlement bypass. |
-| Accessibility and internationalization | **Pending broader review:** keyboard and screen reader, reflow/zoom, both styles, all templates, real locale/RTL, editor translation loading. Do not add accessibility-ready based on automated smoke. |
-| Clean final archives | **Pending rebuild/review:** exact manifests, hashes, ZIP integrity, path safety, private-data/secret/residue scan, binary allowlist and independent code review. No development evidence, dependency trees, database files, source history or operational config in ZIPs. |
+| Accessibility and internationalization | Scoped [keyboard/layout checks](accessibility-readiness.md) and [official core locale/RTL/private editor catalog checks](locale-readiness.md) passed. Human screen-reader/native zoom and reviewed real translations remain pending. Do not add accessibility-ready based on these checks. |
+| Clean final archives | Final archives rebuilt and independently checked: manifests, hashes, CRC, committed-source byte equality and sanitization pass; see [directory results](directory-readiness.md). No development evidence, dependency trees, database files, source history or operational config in ZIPs. |
 | Publication permission | **Not granted by this work.** Owner separately approves final artifact, name, account and submission/public visibility. No SVN upload, public release or automatic publishing workflow. |
 
 ## Required and optional submission assets
 
 | Item | Current state | Preparation required |
 | --- | --- | --- |
-| Theme install ZIP | Rebuild from final source | Include required files, full license and screenshot; record SHA-256 and exact manifest. |
+| Theme install ZIP | Built and verified; hashes in directory-readiness.md | Include required files, full license and screenshot; record SHA-256 and exact manifest. |
 | Theme screenshot | Present, 1200×900 | Final same-revision rendering/owner approval. Avoid advertising, badges or private data. |
 | Theme metadata | Author/license/slugs and verified public contributor identity present | Validate current allowed tags; owner confirms submitting account and authenticated access. |
-| Plugin install ZIP | Rebuild from final source | Keep readable runtime source and license; validate stable tag and actual minimum/tested versions. |
+| Plugin install ZIP | Built and verified; hashes in directory-readiness.md | Keep readable runtime source and license; validate stable tag and actual minimum/tested versions. |
 | Plugin icon | Not present; **optional** | If desired, original `icon-128x128.png` and `icon-256x256.png`; SVG is optional with PNG fallback. Maximum 1 MB. |
 | Plugin banner | Not present; **optional** | If desired, original `banner-772x250.png`; optional `banner-1544x500.png` accompanies it. Maximum 4 MB. |
 | Plugin screenshots | Not present; **recommended, not a directory prerequisite** | Capture actual fictional setup/settings and schedule editor/frontend as `screenshot-1.png`, etc., with numbered `== Screenshots ==` readme captions. Maximum 10 MB each; do not expose account details, notices containing private paths, members or credentials. |
 | Asset provenance manifest | This document plus readme resources | For any new image record creator/source/license and review; no copied brand art or stock asset without clearance. |
-| Translation files | Extraction evidence exists | Shipping POT is a project packaging choice, not a blanket directory admission requirement. Real-locale/JS translation loading still needs proof. Update explicit package allowlist only if adding translation artifacts. |
+| Translation files | Extraction evidence exists | Shipping POT is a project packaging choice, not a blanket directory admission requirement. Official Arabic/German core locales and synthetic private PHP/JS catalog loading passed; see locale-readiness.md. POT files are included through the explicit package allowlist; reviewed real translations remain pending. |
 
 Optional plugin display assets would be staged for later SVN top-level `assets/`, never silently inserted into runtime archives. No optional artwork was generated just to imply that submission is ready.
 
