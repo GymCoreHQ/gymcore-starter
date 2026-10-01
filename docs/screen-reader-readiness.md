@@ -42,3 +42,5 @@ Complete a separate human review for Site Editor dialogs, commerce checkout, thi
 The short smoke command is `GCS_READER_SECONDS=2 node tests/screen-reader-fixture.mjs`. An HTTP 200 and successful cleanup show only that the fictional review site works and is removed afterward. Human acceptance results must be added explicitly after an actual reader session; the runner always records `screenReaderPassed: false` to avoid treating infrastructure success as a reader pass.
 
 Timeout smoke verified on 2026-10-01T15:14:51.801Z: HTTP 200, WP 7.1.2/PHP 8.3.32, process exit 0, `stoppedBy: timeout`, zero cleanup errors.
+
+SIGINT smoke verified on 2026-10-01T15:15:51.790Z: HTTP 200, process exit 0, `stoppedBy: signal`, zero cleanup errors. Both smoke tests kept `screenReaderPassed: false`.
