@@ -17,6 +17,7 @@ const previousPath=path.join(artifacts,'gymcore-starter-0.0.9.zip');
 const hash=bytes=>crypto.createHash('sha256').update(bytes).digest('hex');
 const report={date:new Date().toISOString(),checks:[],errors:[],browserErrors:[],restWrites:[],limitations:['Synthetic prior package changes only the version header to 0.0.9; not an actual earlier published release.','Single-site English WordPress Playground/PHP-WASM/SQLite; no MySQL, multisite or remote auto-update coverage.','UI edits cover one front-page heading and the bundled Light variation; not every Site Editor control.']};
 let server,browser,page;
+let phase='fixture setup';
 const record=(name,pass,detail)=>{report.checks.push({name,pass,...(detail===undefined?{}:{detail})});if(!pass)throw new Error(name);};
 try {
  await fs.copyFile(path.join(root,'dist/gymcore-starter-0.1.0.zip'),packagePath);
@@ -50,12 +51,20 @@ with zipfile.ZipFile(sys.argv[1]) as src,zipfile.ZipFile(sys.argv[2],'w',zipfile
  await page.locator('#user_login').fill('admin');await page.locator('#user_pass').fill('disposable-editor-test-only');await page.locator('#wp-submit').click();await page.waitForURL('**/wp-admin/**');
  const editorUrl=server.serverUrl+'/wp-admin/site-editor.php?postId=gymcore-starter%2F%2Ffront-page&postType=wp_template&canvas=edit';
  const editorHeading=()=>page.frameLocator('iframe[name="editor-canvas"]').getByRole('document',{name:'Block: Heading 1',exact:true});
- const save=()=>page.getByRole('region',{name:'Editor top bar',exact:true}).getByRole('button',{name:'Save',exact:true});
+ const topBar=()=>page.getByRole('region',{name:'Editor top bar',exact:true});
+ const save=()=>topBar().getByRole('button',{name:'Save',exact:true});
  const enterEditor=async first=>{await page.goto(editorUrl,{waitUntil:'domcontentloaded',timeout:90000});if(first){await page.getByRole('button',{name:'Get started',exact:true}).click({timeout:120000});}await expect(editorHeading()).toBeVisible({timeout:120000});};
+ phase='initial editor load';
  await enterEditor(true);
+ // Canvas readiness alone does not establish that the toolbar has mounted.
+ phase='initial editor toolbar readiness';
+ await expect(topBar()).toBeVisible({timeout:120000});
+ await expect(save()).toBeVisible({timeout:120000});
  const customHeading='Example editor customization survives upgrades';
+ phase='front-page heading edit and save';
  await editorHeading().fill(customHeading);await save().click();await expect(save()).toBeDisabled({timeout:45000});
  record('Front-page heading edited and saved using Site Editor controls',true);
+ phase='Light styles edit and save';
  await page.getByRole('button',{name:'Styles',exact:true}).click();
  await page.getByRole('dialog',{name:'Welcome to Styles',exact:true}).getByRole('button',{name:'Close',exact:true}).click();
  await page.getByRole('button',{name:'Browse styles',exact:true}).click();await page.getByRole('button',{name:'Light',exact:true}).click();await save().click();
@@ -63,12 +72,15 @@ with zipfile.ZipFile(sys.argv[1]) as src,zipfile.ZipFile(sys.argv[2],'w',zipfile
  await expect(confirmation.getByRole('checkbox',{name:'Custom Styles',exact:true})).toBeChecked();await confirmation.getByRole('button',{name:'Save',exact:true}).click();await expect(confirmation).toBeHidden({timeout:45000});await expect(save()).toBeDisabled({timeout:45000});
  record('Light Global Styles saved through UI confirmation',true);
  const readState=async()=>php(`<?php require '/wordpress/wp-load.php'; $t=get_block_template('gymcore-starter//front-page','wp_template'); $posts=get_posts(array('post_type'=>'wp_template','name'=>'front-page','post_status'=>'publish','numberposts'=>1,'tax_query'=>array(array('taxonomy'=>'wp_theme','field'=>'name','terms'=>'gymcore-starter')))); $styles=WP_Theme_JSON_Resolver::get_user_data_from_wp_global_styles(wp_get_theme()); echo 'GCS_EDITOR='.wp_json_encode(array('version'=>wp_get_theme()->get('Version'),'templateSource'=>$t->source,'templateId'=>$posts[0]->ID??null,'templateHash'=>hash('sha256',$t->content),'templateContainsCustomization'=>strpos($t->content,'Example editor customization survives upgrades')!==false,'stylesId'=>$styles['ID']??null,'stylesHash'=>hash('sha256',$styles['post_content']??''),'pageHash'=>hash('sha256',get_post(${setup.page})->post_content)));`);
+ phase='saved customization reload';
  await enterEditor(false);await expect(editorHeading()).toHaveText(customHeading);
  await screenshot('editor-before-upgrade.png');
  record('Saved template heading survives a real Site Editor reload',true);
- const verifyFrontend=async name=>{await page.goto(server.serverUrl,{waitUntil:'domcontentloaded'});await expect(page.getByRole('heading',{level:1,name:customHeading,exact:true})).toBeVisible();const background=await page.evaluate(()=>getComputedStyle(document.body).backgroundColor);record(name,background==='rgb(255, 255, 255)',{background});await screenshot(name.startsWith('Before')?'front-before-upgrade.png':'front-after-upgrade.png');};
+ const verifyFrontend=async name=>{phase=name;await page.goto(server.serverUrl,{waitUntil:'domcontentloaded'});await expect(page.getByRole('heading',{level:1,name:customHeading,exact:true})).toBeVisible();const background=await page.evaluate(()=>getComputedStyle(document.body).backgroundColor);record(name,background==='rgb(255, 255, 255)',{background});await screenshot(name.startsWith('Before')?'front-before-upgrade.png':'front-after-upgrade.png');};
  await verifyFrontend('Before upgrade, saved heading and Light styles render after navigation');
+ phase='pre-upgrade native records verification';
  report.before=await readState();record('UI edits created native custom template and Global Styles records',report.before.templateSource==='custom'&&!!report.before.templateId&&!!report.before.stylesId&&report.before.templateContainsCustomization);
+ phase='native theme ZIP replacement';
  await page.goto(server.serverUrl+'/wp-admin/theme-install.php',{waitUntil:'domcontentloaded'});
  // Open the same upload panel used by the standard Add Themes screen.
  if(!await page.locator('#themezip').isVisible())await page.getByRole('button',{name:'Upload Theme',exact:true}).click();
@@ -77,6 +89,7 @@ with zipfile.ZipFile(sys.argv[1]) as src,zipfile.ZipFile(sys.argv[2],'w',zipfile
  await expect(page.getByRole('row',{name:'Version 0.0.9 0.1.0',exact:true})).toBeVisible();await screenshot('upgrade-confirmation.png');
  await replace.click();await expect(page.getByText('Theme updated successfully.',{exact:true})).toBeVisible({timeout:90000});await screenshot('upgrade-success.png');
  record('Native Upload Theme comparison and replacement completed',true);
+ phase='post-upgrade native records and installed files verification';
  report.after=await readState();
  record('Installed theme version advanced to packaged 0.1.0',report.after.version==='0.1.0');
  record('Template ID/content customization preserved',report.after.templateId===report.before.templateId&&report.after.templateHash===report.before.templateHash&&report.after.templateContainsCustomization);
@@ -85,10 +98,30 @@ with zipfile.ZipFile(sys.argv[1]) as src,zipfile.ZipFile(sys.argv[2],'w',zipfile
  const expected=Buffer.from(JSON.stringify(sourceEntries)).toString('base64');
  const files=await php(`<?php require '/wordpress/wp-load.php'; $expected=json_decode(base64_decode('${expected}'),true); $mismatch=array(); foreach($expected as $name=>$hash){$file=WP_CONTENT_DIR.'/themes/'.$name;if(!is_file($file)||hash_file('sha256',$file)!==$hash)$mismatch[]=$name;} echo 'GCS_EDITOR='.wp_json_encode(array('count'=>count($expected),'mismatch'=>$mismatch));`);
  record('Every installed theme file matches the uploaded current ZIP',files.mismatch.length===0,files);
+ phase='post-upgrade editor reload';
  await enterEditor(false);await expect(editorHeading()).toHaveText(customHeading);await screenshot('editor-after-upgrade.png');record('Site Editor reload retains saved heading after package upgrade',true);
  await verifyFrontend('After upgrade, saved heading and Light styles render after navigation');
+ phase='final browser error verification';
  record('No browser JavaScript exceptions',report.browserErrors.length===0);
-} catch(error){report.errors.push(String(error.message).slice(0,3000));process.exitCode=1;if(page)await page.screenshot({path:path.join(output,'failure.png')}).catch(()=>{});}finally{
+} catch(error){
+ report.errors.push(String(error.message).slice(0,3000));process.exitCode=1;
+ report.failurePhase=phase;
+ if(page){
+  await page.screenshot({path:path.join(output,'failure.png')}).catch(()=>{});
+  // Only inspect the fresh fictional Site Editor. Never inspect a personal browser profile.
+  if(new URL(page.url()).pathname.endsWith('/wp-admin/site-editor.php')){
+   report.failureDiagnostics={};
+   try {
+    report.failureDiagnostics.ariaSnapshot=(await page.locator('body').ariaSnapshot({timeout:5000})).slice(0,20000);
+    report.failureDiagnostics.toolbarState=await page.evaluate(()=>({
+     regions:[...document.querySelectorAll('[role="region"]')].map(el=>({label:el.getAttribute('aria-label'),labelledBy:el.getAttribute('aria-labelledby'),visible:el.getClientRects().length>0})),
+     buttons:[...document.querySelectorAll('button')].filter(el=>el.getClientRects().length>0).map(el=>({text:el.innerText.slice(0,160),label:el.getAttribute('aria-label'),disabled:el.disabled})).slice(0,80),
+     editorFrames:[...document.querySelectorAll('iframe')].map(el=>({name:el.name,title:el.title})),
+    }));
+   } catch(diagnosticError){report.failureDiagnostics.error=String(diagnosticError.message).slice(0,1000);}
+  }
+ }
+}finally{
  report.cleanupErrors=[];
  for(const [operation,cleanup] of [
   ['browser',async()=>{if(browser)await browser.close();}],
