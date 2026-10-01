@@ -18,7 +18,7 @@ function schedule_register(): void {
 		array( 'render_callback' => __NAMESPACE__ . '\\schedule_render' )
 	);
 	if ( $block && ! empty( $block->editor_script_handles[0] ) ) {
-		wp_set_script_translations( $block->editor_script_handles[0], 'gymcore-starter-kit' );
+		wp_set_script_translations( $block->editor_script_handles[0], 'gymcore-starter-kit', dirname( __DIR__ ) . '/languages' );
 	}
 }
 

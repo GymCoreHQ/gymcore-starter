@@ -1,3 +1,4 @@
+import './loopback.mjs';
 /** Disposable WordPress/PHP WASM integration harness. No existing site mounts. */
 import fs from 'node:fs/promises';
 import path from 'node:path';

@@ -2,9 +2,11 @@
 """Extract catalogs and verify synthetic JS/format fixtures; never load a site.
 
 Requires PHP, official WP-CLI PHAR (GCS_WP_CLI_PHAR), and GNU msgfmt.
-All outputs stay under ignored test-results/i18n, outside installable packages.
+Synthetic outputs stay under ignored test-results/i18n. The explicit
+--write-templates option refreshes only POT templates in installable packages.
 """
 import hashlib
+import argparse
 import json
 import os
 from pathlib import Path
@@ -12,6 +14,9 @@ import shutil
 import subprocess
 
 root = Path(__file__).resolve().parents[1]
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--write-templates', action='store_true', help='Refresh only real POT templates in the packages; synthetic catalogs stay in test-results.')
+args = parser.parse_args()
 out = root / 'test-results' / 'i18n'
 out.mkdir(parents=True, exist_ok=True)
 phar = Path(os.environ.get('GCS_WP_CLI_PHAR', '/tmp/gcs-i18n-wp-cli.phar'))
@@ -24,13 +29,17 @@ counts = {}
 for kind, domain in [('theme', 'gymcore-starter'), ('plugin', 'gymcore-starter-kit')]:
     target = out / (domain + '.pot')
     subprocess.run(cli + ['i18n', 'make-pot', str(root / kind / domain), str(target),
-                         '--domain=' + domain, '--headers={"POT-Creation-Date":"2026-09-30 00:00+0000"}'],
+                         '--domain=' + domain, '--headers={"POT-Creation-Date":"2026-10-01 00:00+0000","Report-Msgid-Bugs-To":""}'],
                    cwd=root, env=env, check=True)
     text = target.read_text()
     counts[domain] = sum(line.startswith('msgid ') and line != 'msgid ""' for line in text.splitlines())
     required = ['"Light"', '"Header"', '"Training community introduction"'] if kind == 'theme' else [
         '"Schedule filters"', '"Weekly class schedule"', '"%s weekly class"']
     assert all(value in text for value in required), (domain, 'Missing expected extraction')
+    if args.write_templates:
+        languages = root / kind / domain / 'languages'
+        languages.mkdir(exist_ok=True)
+        shutil.copyfile(target, languages / target.name)
 
 # Clearly synthetic translation, not a shipped language or linguistic certification.
 po = out / 'gymcore-starter-kit-en_XA.po'
