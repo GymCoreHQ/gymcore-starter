@@ -61,3 +61,7 @@ A scan of all 158 blobs found no AWS access-key, GitHub-token, private-key, or l
 4. **Final verification:** record new native-zoom/screen-reader work with its actual scope when available; do not claim human certification or accessibility-ready status. After packaged edits, rebuild, rehash, scan, and run affected directory checks on those bytes. Directory reviewers still control acceptance.
 
 No new historical migration, paid-module entitlement, live gateway, translated-language pack or optional artwork is required merely to ship this initial English starter within its existing advertised scope. Do not broaden claims without the corresponding evidence. The mandatory security, ownership, metadata and accessibility rules remain in force.
+
+## Subsequent confirmed metadata
+
+Andrew subsequently selected GymCoreHQ GitHub and a planned new GymCore WordPress.org account, and confirmed his existing personal username `slash1andy`. See [current metadata mapping and rebuilt-package checks](wordpress-directory-metadata.md) for the applied branded Author headers and newer hashes. The future organization account is not invented or listed. Earlier hashes above remain evidence of their stated baseline; no public action is included.
