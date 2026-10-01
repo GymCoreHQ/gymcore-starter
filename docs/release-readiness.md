@@ -12,6 +12,7 @@ Private theme/plugin catalogs now use normal WordPress loading hooks, including 
 - [Locale and RTL runtime verification](locale-readiness.md)
 - [Keyboard, layout and accessibility review](accessibility-readiness.md)
 - [Expanded commerce verification](commerce-readiness.md)
+- [Site Editor saves and packaged upgrade preservation](editor-upgrade-readiness.md)
 - [104-site pagination and exception restoration](network-scale.md)
 - [Final native directory checks and exact minimum WordPress](directory-readiness.md)
 - [Authorized canonical GymCore schedule integration](canonical-integration.md)
@@ -24,6 +25,6 @@ Run `python3 tools/package.py` after the checks. Upload candidates are the two s
 
 Before actual submission, the owner must approve the chosen submitting account/access, name/mark and final redistribution provenance, final artifact hashes and public publication. Slug lookup is not a reservation. Paid provider accounts, purchases and agreements require separate authorization. Remaining technical limits are maintained in [release checklist](release-checklist.md); none is silently waived by passing local checks.
 
-## Automated directory result and environment limit
+## Automated directory result
 
-The plugin ZIP passed native-PHP static Plugin Check with zero errors and one unsuppressed warning about the intentional private-catalog loader. Theme Check passed the preceding theme ZIP with one informational text-domain message; after the CI archive-title wrapping correction, a repeat on the rebuilt theme remains pending the coordinated runtime pause. The warning is explained in directory-readiness.md and remains a manual directory-review decision. The current-package full MySQL runtime rerun could not execute because Docker containers did not become healthy; both task-owned failed fixtures were removed. Historical full MySQL results for the earlier merged package are not relabeled as results for these new bytes.
+After coordinated Docker recovery, the final ZIPs passed native MySQL Plugin Check (29 static plus five runtime checks) with zero errors and one unsuppressed warning about the intentional private-catalog loader. Theme Check passed the final CSS-adjusted theme with one matching-text-domain INFO. Exact versions, artifact hashes, initial failed attempts and successful cleanup are in directory-readiness.md. The loader warning remains a manual directory-review decision; no check pass implies WordPress.org acceptance.

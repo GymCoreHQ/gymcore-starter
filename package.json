@@ -14,7 +14,8 @@
     "test:commerce": "node tests/commerce-run.mjs",
     "test:minimum": "node tests/directory-native-minimum.mjs",
     "test:directory": "python3 tests/directory-native.py",
-    "test:commerce-playground": "node tests/commerce-playground.mjs"
+    "test:commerce-playground": "node tests/commerce-playground.mjs",
+    "test:editor-upgrade": "node tests/editor-upgrade.mjs"
   },
   "devDependencies": {
     "@wp-playground/cli": "3.1.52",

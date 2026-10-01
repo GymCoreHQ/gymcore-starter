@@ -63,7 +63,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suite: [accessibility-review, locale-rtl]
+        suite: [accessibility-review, locale-rtl, editor-upgrade]
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
@@ -71,6 +71,7 @@ jobs:
       - run: npm ci --ignore-scripts
       - run: npx playwright install --with-deps chromium
       - run: sudo apt-get update && sudo apt-get install -y gettext
+      - run: python3 tools/package.py
       - run: node tests/${{ matrix.suite }}.mjs
   commerce:
     runs-on: ubuntu-latest

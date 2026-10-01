@@ -18,7 +18,7 @@ The harness verifies each packaged ZIP member against current source before inst
 
 Plugin Check is initialized early through its `cli.php`. A read-only observer records the selected checks and runtime versions. The PHP error mask excludes only `E_DEPRECATED` dependency notices; no Plugin Check result filters or check exclusions are applied. Theme Check runs through its official CLI command. Sanitized reports stay under ignored `test-results/directory-native/`. The finally block removes only the task-owned container and scratch tree, including generated credentials.
 
-The final frozen-package result below supersedes earlier package snapshots; the current-package native MySQL gate remains pending.
+The final recovered native MySQL result at the end of this report supersedes earlier startup blockers and package snapshots. Earlier attempts below are retained as chronology.
 
 ## Initial failed MySQL attempt (cleanup resolved)
 
@@ -55,3 +55,11 @@ Each ZIP passed CRC inspection and every member matched the current package sour
 ## Subsequent archive-title correction
 
 Remote Chromium 145 CI exposed narrow-layout archive overflow after the checker run above. Adding Query Title to the existing wrapping rule changes only the theme's CSS. The rebuilt theme ZIP SHA-256 is `3ec0fcc09f3e8663b51094e31371deba86084f8f8edf0817e81d0481af761f73` (29 files); the plugin ZIP remains byte-identical at `c1618da9380db4b45eefc3d7bc55ce592a3f6131d3aa7ce1b4fde9535315fbdb`. Audit, WPCS and packaging checks pass. The Theme Check result above concerns the preceding explicitly hashed theme ZIP; rerunning it on this final theme is pending the coordinated local-runtime pause. Full current-package MySQL Plugin Check remains pending too.
+
+## Final native MySQL verification after recovery — 2026-10-01
+
+This result supersedes the startup blockers and final-theme rerun gate above. After coordinated Docker recovery, the unchanged harness completed on the final theme ZIP `3ec0fcc09f3e8663b51094e31371deba86084f8f8edf0817e81d0481af761f73` and plugin ZIP `c1618da9380db4b45eefc3d7bc55ce592a3f6131d3aa7ce1b4fde9535315fbdb`. It verified every ZIP member against source before installation.
+
+Actual runtime: **WordPress 7.1.2, native PHP 8.5.7, MySQL 8.4.11, Plugin Check 2.1.0, Theme Check 20260901**. The early-initialized official CLI runner selected **29 static and five runtime checks**. Plugin Check exited 0 with **zero errors and the one unsuppressed private-catalog loader warning** explained above. Theme Check exited 0 with only the matching-text-domain INFO. Both stderr files were empty.
+
+Runtime cleanup inspection found zero temporary `wp_pc_` tables and no object-cache drop-in. The uniquely owned `gcs-release-check-y_fugp9q` container and all scratch/configuration credentials were removed (`container_removed: true`, `scratch_removed: true`). No unrelated resource was changed. Sanitized reports are in ignored `test-results/directory-native/`; checker success remains distinct from directory approval.

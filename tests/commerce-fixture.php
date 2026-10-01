@@ -2,9 +2,11 @@
 /** Disposable commerce fixtures, executed only through WP-CLI. */
 $phase = $args[0] ?? 'setup';
 $mode = $args[1] ?? 'hpos';
-$checks = array();
+$GLOBALS['gcs_commerce_checks'] = array();
+$checks =& $GLOBALS['gcs_commerce_checks'];
+$managed_browser = 'managed' === ( $args[2] ?? 'unmanaged' );
 /** Record a meaningful assertion without hiding later failures. */
-function gcs_commerce_assert( $condition, $name ) { global $checks; $checks[] = array( 'name' => $name, 'pass' => (bool) $condition ); }
+function gcs_commerce_assert( $condition, $name ) { $GLOBALS['gcs_commerce_checks'][] = array( 'name' => $name, 'pass' => (bool) $condition ); }
 if ( 'setup' === $phase ) {
  update_option( 'woocommerce_custom_orders_table_enabled', 'hpos' === $mode ? 'yes' : 'no' );
  update_option( 'woocommerce_custom_orders_table_data_sync_enabled', 'no' );
@@ -26,7 +28,7 @@ if ( 'setup' === $phase ) {
  $browser_product = new WC_Product_Simple();
  $browser_product->set_name('Fictional Training Pass'); $browser_product->set_slug('fictional-training-pass');
  $browser_product->set_status('publish'); $browser_product->set_virtual(true); $browser_product->set_regular_price('25.00');
- $browser_product->set_manage_stock(false); $browser_product->set_description('Synthetic non-stock-managed service used for browser checkout.'); $browser_product->save();
+ $browser_product->set_manage_stock($managed_browser); if ($managed_browser) { $browser_product->set_stock_quantity(20); } $browser_product->set_description('Synthetic virtual product used for browser checkout.'); $browser_product->save(); update_option('gcs_commerce_browser_product', $browser_product->get_id());
  flush_rewrite_rules();
  echo wp_json_encode(array('product'=>$browser_product->get_id(),'managed_stock_product'=>$product->get_id(),'browser_product_manages_stock'=>$browser_product->get_manage_stock(),'cart_block'=>has_block('woocommerce/cart',get_post(wc_get_page_id('cart'))),'checkout_block'=>has_block('woocommerce/checkout',get_post(wc_get_page_id('checkout'))),'shop'=>get_permalink(wc_get_page_id('shop')),'cart'=>wc_get_cart_url(),'checkout'=>wc_get_checkout_url(),'account'=>get_permalink(wc_get_page_id('myaccount')),'product_url'=>get_permalink($browser_product->get_id())));
  return;
@@ -38,6 +40,14 @@ if ( 'verify-browser-order' === $phase ) {
  gcs_commerce_assert( $order && 'cheque' === $order->get_payment_method(), 'Browser order used real offline check gateway' );
  gcs_commerce_assert( $order && '25.00' === $order->get_total(), 'Browser order total persisted as 25.00 USD' );
  gcs_commerce_assert( $order && 1 === count($order->get_items()), 'Browser order has one product line' );
+ if ($managed_browser) {
+  $product=wc_get_product(get_option('gcs_commerce_browser_product'));
+  gcs_commerce_assert($product && $product->get_manage_stock() && 19 === $product->get_stock_quantity(), 'Managed browser checkout reduces stock exactly once');
+  if ($order) { wc_reduce_stock_levels($order->get_id()); }
+  gcs_commerce_assert($product && 19 === wc_get_product($product->get_id())->get_stock_quantity(), 'Repeated browser-order stock reduction is idempotent');
+  $items=$order ? array_values($order->get_items()) : array();
+  gcs_commerce_assert(count($items)===1 && $items[0]->get_product_id()===$product->get_id() && 1===$items[0]->get_quantity(), 'Managed browser order persists expected product and quantity');
+ }
 } else {
  $hpos=Automattic\WooCommerce\Utilities\OrderUtil::custom_orders_table_usage_is_enabled();
  gcs_commerce_assert( $hpos === ('hpos' === $mode), 'Actual order storage matches requested mode' );
