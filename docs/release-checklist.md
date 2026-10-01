@@ -1,0 +1,41 @@
+# Release gate
+
+This repository is a private review candidate. A green local check or private push is not authorization to publish. Consult verification.md for what actually ran.
+
+## Before any public release
+
+- [ ] Human review of branding, name availability, authorship and GPL redistribution authority; retain source attribution/provenance.
+- [ ] Recheck current WordPress theme/plugin directory rules and release versions against official sources on submission day.
+- [x] Theme Check and native PHP/MySQL Plugin Check on WordPress 7.1.2: automated checks pass; see runtime-report.md and translation-review.md.
+- [ ] Complete manual directory review and repeat official checks on submission-day versions.
+- [x] Native MySQL 8.4.11 / PHP 8.5.7 Plugin Check fixture completed in addition to the documented SQLite/WASM matrix.
+- [ ] Broaden minimum/latest supported GymCore and WooCommerce combinations; the native MySQL check does not establish full commerce compatibility.
+- [x] Real authorized GymCore activation and canonical published weekly class/taxonomy rendering checked against committed source a27215de on WordPress7.1.2/PHP8.3.32/WooCommerce11.1.2. See canonical-integration.md.
+- [ ] Broader GymCore settings/editing flows and licensed features remain unverified; no fixture substitutes for these.
+- [ ] Review Cart/Checkout Blocks, HPOS, products and account templates with the installed commerce stack; no financial transactions against live gateways.
+- [ ] Full keyboard and assistive-technology review of all templates, editor controls, long titles, pagination, comments, forms, mobile/zoom/RTL and both style variations. Do not add accessibility-ready tag until reviewed.
+- [ ] Theme Unit Test data; block serialization and Site Editor saves; editor/frontend parity; user-edited template upgrade behavior.
+- [x] Two-site multisite activation, site-isolated setup/reset, capabilities and per-site opt-in uninstall:21 assertions pass. See multisite.md.
+- [ ] Large networks, subdomains/domain mapping and native database multisite coverage.
+- [x] Translation extraction and synthetic MO/Jed JSON format checks. See translation-review.md.
+- [ ] Real locale loading, translated content review and RTL browser tests; final screenshot and readme/header consistency.
+- [ ] Fresh secret, source-site residue, dependency/license and packaged-ZIP review; ensure dev/source repositories never enter artifacts.
+- [ ] Run CI remotely and resolve failures. Require review before merge; no automatic deployment or publication.
+- [ ] Owner approves visibility change, final slug and WordPress.org submission. Neither is part of the current authorization.
+
+Known deliberate exclusions: source-site media/fonts/logos, operational data, marketing claims, CRM/SMS integrations, source-site PWA cache, tracking, entitlement bypasses, provider deployment scripts, public leaderboards and automatic content seeding. These must not be reintroduced casually.
+
+## Plugin guideline desk review
+
+The current source was reviewed against all 18 directory guidelines; this is a desk review, not directory acceptance.
+
+| Guidelines | Current disposition |
+| --- | --- |
+| 1 license, 4 readable source | GPL2-or-later declarations and matching license text; all runtime source shipped; no third-party runtime bundles |
+| 2 developer responsibility, 16 completeness | Owner support/release responsibility remains; code is a private candidate with explicit test gaps |
+| 3 stable SVN, 14 SVN releases, 15 versions | Consistent 0.1.0 package versions; no SVN submission; increment on future releases |
+| 5 trialware, 6 serviceware | No starter license gate, expiration, trial timer or remote service. Optional separately installed GymCore data dependency remains honestly documented |
+| 7 data collection, 8 remote code | No telemetry, external data transmission, remote executable code or external runtime assets |
+| 9 conduct, 10 external links, 11 dashboard, 12 readme | No forced credit links, activation redirect, admin advertisement, spam or unrelated dashboard replacement |
+| 13 bundled libraries | Uses WordPress-provided editor packages; developer dependencies excluded from installable archives |
+| 17 trademarks, 18 directory discretion | GymCoreHQ organization verified; final name/trademark authorization and directory discretion remain human submission gates |

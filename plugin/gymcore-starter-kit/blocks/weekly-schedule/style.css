@@ -1,0 +1,27 @@
+.wp-block-gymcore-starter-weekly-schedule .gcs-schedule-days {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+	gap: 1.5rem;
+}
+.wp-block-gymcore-starter-weekly-schedule .gcs-schedule-day {
+	border-block-start: 2px solid currentColor;
+	padding-block-start: 1rem;
+	min-width: 0;
+}
+.wp-block-gymcore-starter-weekly-schedule .gcs-schedule-day ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.wp-block-gymcore-starter-weekly-schedule .gcs-schedule-day li {
+	padding-block: 1rem;
+	border-block-end: 1px solid currentColor;
+	overflow-wrap: anywhere;
+}
+.wp-block-gymcore-starter-weekly-schedule .gcs-schedule-day h2,
+.wp-block-gymcore-starter-weekly-schedule .gcs-schedule-day h3,
+.wp-block-gymcore-starter-weekly-schedule .gcs-schedule-day h4,
+.wp-block-gymcore-starter-weekly-schedule .gcs-schedule-day h5,
+.wp-block-gymcore-starter-weekly-schedule .gcs-schedule-day h6 { margin-block: 0 0.5rem; }
+.wp-block-gymcore-starter-weekly-schedule .gcs-class-title { display: block; }
+.wp-block-gymcore-starter-weekly-schedule .gcs-class-terms { display: block; font-size: 0.875em; }

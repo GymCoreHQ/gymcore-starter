@@ -1,0 +1,54 @@
+name: Starter checks
+on:
+  pull_request:
+concurrency:
+  group: starter-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: python3 tools/audit.py
+      - run: composer install --no-interaction --prefer-dist
+      - run: composer lint
+      - run: python3 tools/package.py
+  wordpress:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - wp: '7.0'
+            php: '8.3'
+          - wp: '7.1.2'
+            php: '8.3'
+          - wp: '7.1.2'
+            php: '8.5'
+          - wp: '7.1.2'
+            php: '8.3'
+            woo: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:wordpress
+        env:
+          GCS_BROWSER_TESTS: '1'
+          GCS_WOO_TESTS: ${{ matrix.woo || '0' }}
+          GCS_WP_VERSION: ${{ matrix.wp }}
+          GCS_PHP_VERSION: ${{ matrix.php }}
+  multisite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - run: npm ci --ignore-scripts
+      - run: npm run test:multisite

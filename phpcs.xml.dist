@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ruleset name="GymCore Starter">
+ <description>WordPress security and coding standards for distributable code.</description>
+ <file>plugin</file><file>theme</file>
+ <exclude-pattern>*/LICENSE</exclude-pattern>
+ <arg name="extensions" value="php"/>
+ <arg name="parallel" value="4"/>
+ <rule ref="WordPress"/>
+ <config name="minimum_supported_wp_version" value="7.0"/>
+ <rule ref="WordPress.WP.I18n"><properties><property name="text_domain" type="array"><element value="gymcore-starter-kit"/><element value="gymcore-starter"/></property></properties></rule>
+</ruleset>
