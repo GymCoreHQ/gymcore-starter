@@ -27,8 +27,7 @@ site whether Settings > Reading uses posts or a static page. To manage homepage 
 through the ordinary page editor instead, replace the Front Page template's main
 content with a Post Content block and choose a static page in Settings > Reading.
 For a posts-only homepage, replace the Front Page template with a Query Loop, or use
-the Home/Index template layout. The optional starter plugin imports drafts only; it
-never changes your Reading settings. Ordinary pages use their own title and content.
+the Home/Index template layout. Ordinary pages use their own title and content.
 
 Replace every instructional paragraph. Link programs and booking buttons to your own
 published pages or sections. Set contact details in the Contact pattern, insert approved
@@ -52,9 +51,9 @@ labels, sensible headings, and accessible plugin content. This theme has not ear
 WordPress.org accessibility-ready review. No WordPress.org approval is claimed.
 The repository release checklist and runtime test report record actual tested
 versions. Verify those before publication. A fictional 1200 by 900 screenshot is
-included. Final screenshot approval, real-locale review, authenticated submission
-access, and directory review remain release gates. No third-party
-assets or fonts are bundled.
+included. Authenticated submission access and directory review remain release gates.
+Have a fluent reviewer check any additional translations before shipping them.
+No third-party assets or fonts are bundled.
 
 == Copyright ==
 Copyright (C) 2026 GymCoreHQ. Original implementation licensed GPL-2.0-or-later.
