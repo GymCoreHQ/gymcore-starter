@@ -66,3 +66,7 @@ Checked 2026-10-01:
 - [WordPress accessibility-ready requirements](https://make.wordpress.org/themes/handbook/review/accessibility/required/) — keyboard, semantics, names/labels, contrast, resizing, and other release criteria.
 - [W3C understanding resize text, SC 1.4.4](https://www.w3.org/WAI/WCAG22/Understanding/resize-text.html) — text enlargement to 200% without loss of content/functionality.
 - [W3C understanding reflow, SC 1.4.10](https://www.w3.org/WAI/WCAG22/Understanding/reflow.html) — distinguish viewport reflow from other magnification checks.
+
+## Linux Chromium CI follow-up
+
+The first remote run on Chromium **145.0.7632.6** found four archive overflow conditions (mobile and CSS zoom 200%, both palettes), while all keyboard and axe checks passed. This differs from the local Chrome 154 result above. The archive's native Query Title was omitted from the existing long-title wrapping rule. The candidate now includes `.wp-block-query-title` in that rule and emits overflowing element details on test failure. The complete CI matrix must pass on the corrected head before review readiness; no overflow assertion was removed or relaxed.

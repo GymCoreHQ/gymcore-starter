@@ -51,3 +51,7 @@ After the navigation palette and WooCommerce form-label contrast fixes, both ZIP
 | `gymcore-starter-kit-0.1.0.zip` | `c1618da9380db4b45eefc3d7bc55ce592a3f6131d3aa7ce1b4fde9535315fbdb` | 12 |
 
 Each ZIP passed CRC inspection and every member matched the current package source before loading. `test-results/directory-native-sqlite/report.json` retains both hashes and exact findings, with `enabled-checks.json` recording versions and the lack of early runtime initialization. The standard output's warning is preserved rather than suppressed. The loader warning requires a manual directory decision; these results do not justify a zero-findings or latest-compliant claim.
+
+## Subsequent archive-title correction
+
+Remote Chromium 145 CI exposed narrow-layout archive overflow after the checker run above. Adding Query Title to the existing wrapping rule changes only the theme's CSS. The rebuilt theme ZIP SHA-256 is `3ec0fcc09f3e8663b51094e31371deba86084f8f8edf0817e81d0481af761f73` (29 files); the plugin ZIP remains byte-identical at `c1618da9380db4b45eefc3d7bc55ce592a3f6131d3aa7ce1b4fde9535315fbdb`. Audit, WPCS and packaging checks pass. The Theme Check result above concerns the preceding explicitly hashed theme ZIP; rerunning it on this final theme is pending the coordinated local-runtime pause. Full current-package MySQL Plugin Check remains pending too.
