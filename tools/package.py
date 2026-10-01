@@ -20,7 +20,7 @@ for kind, name in [('theme', 'gymcore-starter'), ('plugin', 'gymcore-starter-kit
             if not p.is_file():
                 continue
             assert not p.is_symlink()
-            assert p.suffix in ('.php', '.js', '.css', '.json', '.html', '.txt', '.png') or p.name == 'LICENSE'
+            assert p.suffix in ('.php', '.js', '.css', '.json', '.html', '.txt', '.png', '.pot') or p.name == 'LICENSE'
             archive = str(p.relative_to(base.parent))
             info = zipfile.ZipInfo(archive, (2026, 9, 30, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED

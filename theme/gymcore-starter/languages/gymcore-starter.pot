@@ -1,0 +1,333 @@
+# Copyright (C) 2026 GymCoreHQ
+# This file is distributed under the GNU General Public License v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: GymCore Starter 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-10-01 00:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: gymcore-starter\n"
+
+#. Theme Name of the theme
+#: style.css
+msgid "GymCore Starter"
+msgstr ""
+
+#. Description of the theme
+#: style.css
+msgid "An editable, accessible-minded block theme for independent training communities. Includes native WordPress patterns, responsive navigation, and dark and light styles. No plugins required."
+msgstr ""
+
+#. Author of the theme
+#: style.css
+msgid "GymCoreHQ"
+msgstr ""
+
+#: patterns/about.php
+msgctxt "Pattern title"
+msgid "About the school"
+msgstr ""
+
+#: patterns/about.php
+#: patterns/coaches.php
+#: patterns/contact.php
+#: patterns/cta.php
+#: patterns/faq.php
+#: patterns/hero.php
+#: patterns/no-results.php
+#: patterns/not-found.php
+#: patterns/programs.php
+msgctxt "Pattern description"
+msgid "Editable starter content. Replace example text before publishing."
+msgstr ""
+
+#: patterns/about.php:14
+msgid "Built around people."
+msgstr ""
+
+#: patterns/about.php:16
+msgid "Share your teaching philosophy, what makes your training environment welcoming, and the standards your team works toward. Use specific, honest details from your own school."
+msgstr ""
+
+#: patterns/coaches.php
+msgctxt "Pattern title"
+msgid "Instructor introduction"
+msgstr ""
+
+#: patterns/coaches.php:14
+msgid "Meet the people in your corner."
+msgstr ""
+
+#: patterns/coaches.php:16
+msgid "Introduce your instructors with their consent. Add verified qualifications, teaching experience, and an approved photo using the Image block. No instructor profiles or photos are supplied."
+msgstr ""
+
+#: patterns/contact.php
+msgctxt "Pattern title"
+msgid "Visit and contact information"
+msgstr ""
+
+#: patterns/contact.php:14
+msgid "Come say hello."
+msgstr ""
+
+#: patterns/contact.php:16
+msgid "Add your public contact information, opening hours, and accessible arrival instructions here. Only publish information you want visitors to see. Add an approved contact form block from your chosen plugin if needed."
+msgstr ""
+
+#: patterns/cta.php
+msgctxt "Pattern title"
+msgid "Invitation to get started"
+msgstr ""
+
+#: patterns/cta.php:14
+msgid "Your first step starts with a conversation."
+msgstr ""
+
+#: patterns/cta.php:16
+msgid "Tell visitors how to ask a question or arrange their first visit. Replace this invitation with a clear next step that your team can fulfill."
+msgstr ""
+
+#: patterns/cta.php:19
+msgid "Plan your visit"
+msgstr ""
+
+#: patterns/faq.php
+msgctxt "Pattern title"
+msgid "First visit questions"
+msgstr ""
+
+#: patterns/faq.php:14
+msgid "Before your first class."
+msgstr ""
+
+#: patterns/faq.php:16
+msgid "Do I need experience?"
+msgstr ""
+
+#: patterns/faq.php:17
+msgid "Explain which sessions welcome beginners and how to choose an appropriate class."
+msgstr ""
+
+#: patterns/faq.php:20
+msgid "What should I bring?"
+msgstr ""
+
+#: patterns/faq.php:21
+msgid "Add your clothing, equipment, and arrival guidance here."
+msgstr ""
+
+#: patterns/faq.php:24
+msgid "How do I book a visit?"
+msgstr ""
+
+#: patterns/faq.php:25
+msgid "Explain your booking process and add a link to your published booking page."
+msgstr ""
+
+#: patterns/hero.php
+msgctxt "Pattern title"
+msgid "Training community introduction"
+msgstr ""
+
+#: patterns/hero.php:14
+msgid "YOUR TRAINING COMMUNITY"
+msgstr ""
+
+#: patterns/hero.php:16
+msgid "Make room for your next chapter."
+msgstr ""
+
+#: patterns/hero.php:18
+msgid "Introduce your school, the people you welcome, and the experience a new student can expect. Replace this starter text with your own story."
+msgstr ""
+
+#: patterns/hero.php:21
+msgid "Explore the programs"
+msgstr ""
+
+#: patterns/journal-heading.php
+msgctxt "Pattern title"
+msgid "Journal heading"
+msgstr ""
+
+#: patterns/journal-heading.php:13
+msgid "From the school"
+msgstr ""
+
+#: patterns/no-results.php
+msgctxt "Pattern title"
+msgid "No results message"
+msgstr ""
+
+#: patterns/no-results.php:13
+msgid "No posts found. Try another search."
+msgstr ""
+
+#: patterns/not-found.php
+msgctxt "Pattern title"
+msgid "Page not found"
+msgstr ""
+
+#: patterns/not-found.php:13
+msgid "This page could not be found."
+msgstr ""
+
+#: patterns/not-found.php:15
+msgid "Try searching for what you need."
+msgstr ""
+
+#: patterns/programs.php
+msgctxt "Pattern title"
+msgid "Program overview"
+msgstr ""
+
+#: patterns/programs.php:14
+msgid "Find your starting point."
+msgstr ""
+
+#: patterns/programs.php:16
+msgid "Describe your programs clearly, including who each class is for and how to get started."
+msgstr ""
+
+#: patterns/programs.php:20
+msgid "Foundations"
+msgstr ""
+
+#: patterns/programs.php:22
+msgid "Explain what a first class covers, what to bring, and how beginners are supported."
+msgstr ""
+
+#: patterns/programs.php:26
+msgid "Develop your practice"
+msgstr ""
+
+#: patterns/programs.php:28
+msgid "Describe the skills students can build and how your instructors support progression."
+msgstr ""
+
+#: patterns/programs.php:32
+msgid "Train together"
+msgstr ""
+
+#: patterns/programs.php:34
+msgid "Introduce your community sessions and any age or experience requirements."
+msgstr ""
+
+#: theme.json
+#: styles/light.json
+msgctxt "Color name"
+msgid "Base"
+msgstr ""
+
+#: theme.json
+#: styles/light.json
+msgctxt "Color name"
+msgid "Surface"
+msgstr ""
+
+#: theme.json
+#: styles/light.json
+msgctxt "Color name"
+msgid "Contrast"
+msgstr ""
+
+#: theme.json
+#: styles/light.json
+msgctxt "Color name"
+msgid "Muted"
+msgstr ""
+
+#: theme.json
+#: styles/light.json
+msgctxt "Color name"
+msgid "Accent"
+msgstr ""
+
+#: theme.json
+#: styles/light.json
+msgctxt "Color name"
+msgid "Action"
+msgstr ""
+
+#: theme.json
+#: styles/light.json
+msgctxt "Color name"
+msgid "White"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Extra large"
+msgstr ""
+
+#: theme.json
+msgctxt "Space size name"
+msgid "Section"
+msgstr ""
+
+#: theme.json
+msgctxt "Font family name"
+msgid "System sans"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Small"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Medium"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Extra large"
+msgstr ""
+
+#: theme.json
+msgctxt "Font size name"
+msgid "Display"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Header"
+msgstr ""
+
+#: theme.json
+msgctxt "Template part name"
+msgid "Footer"
+msgstr ""
+
+#: styles/light.json
+msgctxt "Style variation name"
+msgid "Light"
+msgstr ""

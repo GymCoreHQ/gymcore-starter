@@ -9,6 +9,7 @@
  * License: GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: gymcore-starter-kit
+ * Domain Path: /languages
  *
  * @package GymCoreStarter
  */
@@ -23,6 +24,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/includes/setup.php';
 require_once __DIR__ . '/includes/schedule.php';
+
+/** Register private catalogs on init, before block metadata translation. */
+function load_textdomain(): void {
+	load_plugin_textdomain( 'gymcore-starter-kit', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+}
+add_action( 'init', __NAMESPACE__ . '\\load_textdomain', 0 );
 
 add_action( 'admin_menu', __NAMESPACE__ . '\\admin_menu' );
 add_action( 'admin_init', __NAMESPACE__ . '\\register_settings' );

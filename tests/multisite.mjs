@@ -1,3 +1,4 @@
+import './loopback.mjs';
 /** Disposable multisite lifecycle verification. No existing site or database mounts. */
 import fs from 'node:fs/promises';
 import path from 'node:path';

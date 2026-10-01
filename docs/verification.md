@@ -13,7 +13,7 @@ This is a private review candidate. See [runtime report](runtime-report.md) for 
 
 ## Scope limits
 
-The schedule tests use clearly identified synthetic contract fixtures. They do not establish compatibility with every actual GymCore release or licensed feature. WooCommerce coverage demonstrates activation/coexistence only. No commerce, booking, subscriptions, financial, entitlement, multisite or production-database certification is asserted.
+The schedule tests use clearly identified synthetic contract fixtures. They do not establish compatibility with every actual GymCore release or licensed feature. The original WooCommerce baseline demonstrated activation/coexistence only. Later finite verification is indexed in release-readiness.md. No broad booking, subscriptions, financial, entitlement, multisite or production-database certification is asserted.
 
 The core-only theme and draft setup require no GymCore installation. The dynamic timetable is an optional schema adapter requiring the real product's published class content. Unsupported one-time/custom recurrence and exceptions are documented, not silently presented as a full booking calendar.
 
@@ -26,3 +26,7 @@ Final public release remains gated by [release-checklist.md](release-checklist.m
 See [multisite lifecycle](multisite.md), [translation readiness](translation-review.md), and [authorized canonical integration](canonical-integration.md) for the additional scoped checks and explicit remaining limits. These extend the original baseline above; they do not certify directory acceptance or full commerce/entitlement compatibility.
 
 The authorized native MySQL follow-up also completed: Plugin Check 2.1.0 on WordPress 7.1.2 / PHP 8.5.7 / MySQL 8.4.11 selected 29 static and 5 runtime checks with early initialization and returned zero findings. This supersedes the original environment blocker; see translation-review.md for exact command, isolation, cleanup and remaining manual release gates.
+
+## Post-merge release candidate
+
+[Release candidate verification](release-readiness.md) indexes the new private-catalog implementation, Arabic/German runtime evidence, larger-network regression, exact WordPress 7.0 minimum test, broader presentation/commerce review and rebuilt submission artifacts. Consult those reports for final results and remaining limits; historical baseline counts above are not claims about unexecuted tests.

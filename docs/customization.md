@@ -26,7 +26,7 @@ Patterns are copied on insertion: changing their PHP source does not rewrite exi
 
 Install GymCore and any optional companion modules through their authorized distribution. Configure their dependencies and entitlement settings normally. This repository does not bundle or install them.
 
-The supplied weekly schedule is a read-only schema adapter, verified separately against synthetic contract fixtures. Review the exact GymCore version compatibility before production. It uses no private REST endpoints or license override.
+The supplied weekly schedule is a read-only schema adapter, verified against synthetic contract fixtures and the separately authorized canonical version recorded in [canonical integration](canonical-integration.md). Review the exact GymCore version compatibility before production. It uses no private REST endpoints or license override.
 
 Canonical GymCore offers features such as targeted content, trial signup, memberships and member progress. See the [feature map](source-audit.md) for exact existing block/shortcode names. Insert them through the owning plugin's UI only after its own prerequisites and tests pass. Do not advertise the upstream schedule block as certified here: the source audit records rendering/schema concerns. Public rankings may expose personal names, so enable such content only after an explicit privacy review.
 
@@ -39,3 +39,7 @@ Normal site operation needs no source edits. Developers can add a child theme or
 The weekly block's data contract is explicit in `includes/schedule.php`. To support a future GymCore schema, update the adapter and its runtime fixtures together, including public visibility and timezone tests. Do not instantiate internal product modules to bypass availability checks. No generalized arbitrary-shortcode or arbitrary-query control is exposed.
 
 An interrupted import lock is the one deliberate WP-CLI maintenance exception; see architecture. Package version changes and translation generation are developer release operations. Translation strings use `gymcore-starter` and `gymcore-starter-kit`; prepare POT/JSON catalogs with official WP-CLI i18n tooling before directory submission.
+
+## WooCommerce field labels
+
+The starter keeps WooCommerce’s default white text/select control surfaces and gives their floating labels a readable dark color. The rule is scoped to WooCommerce control labels, not payment-method labels. If you replace those control surfaces with custom dark styles, review label contrast too; use the Site Editor’s Additional CSS for coordinated control styling. No source edit is required.

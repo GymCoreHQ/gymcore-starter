@@ -1,10 +1,13 @@
 === GymCore Starter ===
+Contributors: slash1andy
 Requires at least: 7.0
 Tested up to: 7.1
 Requires PHP: 8.3
 Version: 0.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
+
+A native block theme with editable patterns, navigation, and dark and light styles for training communities. No plugins required.
 
 == Description ==
 A core-only block theme for training communities. No external fonts, images, scripts,
@@ -48,12 +51,20 @@ reflowing layouts are provided. Site authors must supply useful alt text, real l
 labels, sensible headings, and accessible plugin content. This theme has not earned
 WordPress.org accessibility-ready review. No WordPress.org approval is claimed.
 The repository release checklist and runtime test report record actual tested
-versions. Verify those before publication. Screenshot, final translation catalog, and directory review are release
-gates. No third-party assets or fonts are bundled.
+versions. Verify those before publication. A fictional 1200 by 900 screenshot is
+included. Final screenshot approval, real-locale review, authenticated submission
+access, and directory review remain release gates. No third-party
+assets or fonts are bundled.
 
 == Copyright ==
 Copyright (C) 2026 GymCoreHQ. Original implementation licensed GPL-2.0-or-later.
 All theme files, pattern text, styles, and code are original. No third-party assets.
+
+== Resources ==
+Code, pattern text, styles, and screenshot.png: Copyright (C) 2026 GymCoreHQ,
+GPL-2.0-or-later. The screenshot shows this theme rendered with fictional example
+content. It contains no customer photographs, logo artwork, or bundled fonts.
+Typography uses the visitor's system fonts. LICENSE contains the license text.
 
 == Changelog ==
 = 0.1.0 =

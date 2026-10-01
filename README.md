@@ -48,9 +48,12 @@ Playground downloads official WordPress/PHP resources into isolated test directo
 - [HMA feature map and provenance](docs/source-audit.md)
 - [Schedule contract and limitations](docs/schedule-adapter.md)
 - [Current standards research](docs/standards-research.md)
+- [Release candidate verification and submission handoff](docs/release-readiness.md)
 - [Release checklist](docs/release-checklist.md)
 - [Security reporting](SECURITY.md)
 
 Code is GPL-2.0-or-later; see [LICENSE](LICENSE). The original source-site images, fonts and logos are deliberately excluded. Names and trademarks remain their owners' property. No automated deployment, privileged workflow or WordPress.org publishing is configured.
 
 Additional verification: [multisite](docs/multisite.md), [translation readiness](docs/translation-review.md), and [optional canonical GymCore integration](docs/canonical-integration.md).
+
+Expanded checks: `npm run test:minimum`, `npm run test:network-scale`, `npm run test:accessibility`, and `npm run test:locale` (GNU gettext required). Native fixture requirements for `test:commerce` and `test:directory` are documented in their reports. These commands use fictional isolated data and never authorize publication.
