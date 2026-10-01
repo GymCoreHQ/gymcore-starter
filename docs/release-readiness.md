@@ -11,13 +11,19 @@ Private theme/plugin catalogs now use normal WordPress loading hooks, including 
 - [Current directory requirements and submission assets](submission-readiness.md)
 - [Locale and RTL runtime verification](locale-readiness.md)
 - [Keyboard, layout and accessibility review](accessibility-readiness.md)
+- [Representative agent keyboard and visual observations](manual-accessibility-review.md)
 - [Expanded commerce verification](commerce-readiness.md)
+- [SQLite reservation control comparison](sqlite-stock-diagnostic.md)
 - [Site Editor saves and packaged upgrade preservation](editor-upgrade-readiness.md)
 - [104-site pagination and exception restoration](network-scale.md)
 - [Final native directory checks and exact minimum WordPress](directory-readiness.md)
 - [Authorized canonical GymCore schedule integration](canonical-integration.md)
 
 Reports distinguish automated browser keyboard/DOM checks from an actual human screen-reader assessment; synthetic translated markers from reviewed translations; and offline fictional checkout from paid provider or licensed-feature coverage. Current upstream PHP patches are documented separately from exact installed test runtimes.
+
+## Bounded remaining criteria
+
+See [remaining acceptance criteria](remaining-acceptance.md) for the exact prerequisites to broaden historical-upgrade, licensed-module, provider and language claims. Optional unadvertised integrations are not an indefinite blocker for the initial starter release. Publication and directory approval remain separate decisions.
 
 ## Submission handoff
 
