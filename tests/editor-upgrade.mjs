@@ -53,7 +53,27 @@ with zipfile.ZipFile(sys.argv[1]) as src,zipfile.ZipFile(sys.argv[2],'w',zipfile
  const editorHeading=()=>page.frameLocator('iframe[name="editor-canvas"]').getByRole('document',{name:'Block: Heading 1',exact:true});
  const topBar=()=>page.getByRole('region',{name:'Editor top bar',exact:true});
  const save=()=>topBar().getByRole('button',{name:'Save',exact:true});
- const enterEditor=async first=>{await page.goto(editorUrl,{waitUntil:'domcontentloaded',timeout:90000});if(first){await page.getByRole('button',{name:'Get started',exact:true}).click({timeout:120000});}await expect(editorHeading()).toBeVisible({timeout:120000});};
+ const enterEditor=async first=>{
+  await page.goto(editorUrl,{waitUntil:'domcontentloaded',timeout:90000});
+  await expect(editorHeading()).toBeVisible({timeout:120000});
+  if(first){
+   phase='initial editor welcome dismissal and toolbar readiness';
+   const welcome=page.getByRole('dialog',{name:'Welcome to the site editor',exact:true});
+   await expect(welcome).toBeVisible({timeout:120000});
+   report.welcomeDismissals=0;
+   // CI exposed the welcome dialog after an earlier click, hiding toolbar roles.
+   // Dismiss only a visible welcome dialog, after the canvas has mounted.
+   await expect(async()=>{
+    if(await welcome.isVisible()){
+     await welcome.getByRole('button',{name:'Get started',exact:true}).click({timeout:5000});
+     report.welcomeDismissals++;
+    }
+    await expect(welcome).toBeHidden({timeout:3000});
+    await expect(topBar()).toBeVisible({timeout:3000});
+    await expect(save()).toBeVisible({timeout:3000});
+   }).toPass({timeout:120000,intervals:[500,1000,2000]});
+  }
+ };
  phase='initial editor load';
  await enterEditor(true);
  // Canvas readiness alone does not establish that the toolbar has mounted.
