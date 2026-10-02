@@ -32,7 +32,7 @@ No. The block and optional draft setup can be used with another theme.
 Deactivation retains everything. By default uninstall retains settings and content. An explicit uninstall preference removes only settings/import bookkeeping; pages always remain. Reinstalling after deleting the import record can create new drafts. The dynamic schedule block requires the plugin and must be replaced or removed before uninstalling.
 
 = Does it support multisite? =
-Setup and removal operate per site. Network uninstall checks each site's own cleanup preference and always preserves pages. The two-site lifecycle regression passes on WordPress 7.1.2, PHP 8.3.32, and SQLite/WASM. Large networks, multi-network setups, domain mapping, subdomain routing, and native-database network workflows remain unverified. Very large networks may need an adequate execution time limit for uninstall.
+Setup and removal operate per site. Network uninstall checks each site's own cleanup preference and always preserves pages. The two-site lifecycle and 104-site network regressions pass on WordPress 7.1.2, PHP 8.3.32, and SQLite/WASM. Networks beyond that fixture, multi-network setups, domain mapping, subdomain routing, and native-database network workflows remain unverified. Very large networks may need an adequate execution time limit for uninstall.
 
 = Does reset delete published content? =
 No. Only matching imported drafts, including edits to them, can move to Trash, with a nonce, capability checks and explicit confirmation. WordPress Trash must be enabled. Restore drafts from Pages → Trash. Repeating setup never overwrites imported pages.
