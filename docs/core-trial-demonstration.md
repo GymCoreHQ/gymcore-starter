@@ -1,16 +1,20 @@
 # Optional Core trial-request example
 
-The starter deliberately owns no public lead handler, consent store, or receipt scheduler. This example composes the separately installed **GymCore Trial Signup** block (`gymcore/trial-signup`) with ordinary editable WordPress blocks. It adds no data collection to the default theme or draft importer.
+The starter doesn't handle leads, store consent, or schedule receipts. Those stay in GymCore Core. This example pairs the separately installed **GymCore Trial Signup** block (`gymcore/trial-signup`) with ordinary, editable WordPress blocks. It adds no data collection to the default theme or draft importer.
 
 ## Dependencies and limits
 
-Obtain authorized **GymCore Core and GymCore Blocks** builds containing the generic contact alignment and its prerequisite Core PR #128 (`28b6050540bb46c5c95a1f1cef2a95ece0a33401`). The alignment is [Core PR #130](https://github.com/GymCoreHQ/gymcore/pull/130), independently reviewed at `07ce8b6559d8b8ccd769e1bf3a39c9da3af2392b`; this commit includes the prerequisite. Both PRs must be integrated and the resulting Core/Blocks packages built before treating this as released behavior. Existing packages numbered 1.0.0 can predate these fixes: do not infer compatibility from that version label. No released minimum version is claimed until the corrected build is actually released. Keep private product packages outside this repository.
+**Status: not usable yet.** This example needs the `gymcore/trial-signup` block from GymCore Core and GymCore Blocks. The needed fixes are still open pull requests: [Core PR #128](https://github.com/GymCoreHQ/gymcore/pull/128) (`28b6050540bb46c5c95a1f1cef2a95ece0a33401`) and [Core PR #130](https://github.com/GymCoreHQ/gymcore/pull/130) (`07ce8b6559d8b8ccd769e1bf3a39c9da3af2392b`, which includes #128). Until both are merged and released, no minimum version is claimed. Packages numbered 1.0.0 may predate these fixes, so don't assume a version number is enough.
 
-The starter itself still needs only WordPress 7.0+/PHP 8.3+. Follow Core/Blocks' own activation requirements, including WooCommerce where required; this example does not install dependencies or grant entitlements. The starter companion plugin is optional and does not supply the trial block. If the block is missing, stop and install/configure the authorized dependency; do not publish a missing-block placeholder.
+GymCore Core and Blocks are not yet publicly distributed. If you have authorized builds, keep them out of this repository.
 
-This generic example captures an **adult contact request**. It does not collect minor/guardian identities, select a class, reserve capacity, or confirm a booking. The success text must not imply one. Use a separately supported flow for minors or actual booking. Do not paste a site-specific adapter into the starter.
+The starter itself still needs only WordPress 7.0+ and PHP 8.3+. Follow Core and Blocks' own activation requirements, including WooCommerce where they ask for it. This example doesn't install dependencies or grant entitlements, and the optional companion plugin doesn't provide the block. If the block is missing, install the authorized dependency first rather than publishing a placeholder.
+
+The form collects an **adult contact request** only. It doesn't collect details for minors or guardians, pick a class, hold a spot, or confirm a booking, and the success message shouldn't suggest otherwise. For minors or real bookings, use a separate flow. Please don't paste a site-specific adapter into the starter.
 
 ## Build the page through WordPress
+
+The button label and success text in the example are English placeholders. Translate them for your site.
 
 1. On an isolated fictional test site, activate the corrected Core and Blocks packages and configure their public trial endpoint and approved lead-source choices.
 2. Create a new draft page in **Pages → Add New**. Insert **GymCore Trial Signup**, or paste `examples/core-trial-request.html` into the editor's Code editor, then return to Visual editor. The file is ordinary block markup, not PHP or an automatic importer.
@@ -24,7 +28,7 @@ No default page, menu, homepage setting, user role, or existing content is chang
 
 ## Distribution boundary
 
-This repository example and guide are opt-in development material outside both installable ZIPs. The theme remains presentation-only and does not recommend an unlisted plugin in its packaged onboarding/readme. No GymCore binaries, business logic, customer data, API keys, account IDs or provider setup are included.
+This guide and example are optional development material, kept outside both installable ZIPs. The theme stays presentation-only and its packaged onboarding doesn't mention any unlisted plugin. The repository contains no GymCore binaries, business logic, customer data, API keys, account IDs or provider setup.
 
 ## Verified development matrix — 2026-10-03
 
