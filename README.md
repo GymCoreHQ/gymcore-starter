@@ -15,6 +15,8 @@ The reusable layout ideas come from the HMA site. The implementation starts with
 
 The theme and draft setup need only WordPress. The schedule needs GymCore's public class content. WooCommerce is optional for the starter; GymCore itself may require it. Products, checkout, subscriptions, bookings, members and licenses belong to their owning plugins. The starter never grants a paid feature or substitutes for a license.
 
+Want an optional contact-request page for adults? See the [Core trial demonstration](docs/core-trial-demonstration.md). It isn't part of the default theme or imported drafts, and it needs a Core and Blocks build that isn't released yet.
+
 ## What is included
 
 | Package | Contents | Native editing surface |
