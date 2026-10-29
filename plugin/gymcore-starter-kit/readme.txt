@@ -15,6 +15,8 @@ Activation creates no content. Settings → GymCore Starter offers an explicit, 
 
 The weekly schedule block reads published active classes from an independently installed GymCore plugin. It does not create classes, bookings, members, products, orders or licenses. It works without GymCore with a neutral empty state. WooCommerce is not required by this plugin; install it separately if your GymCore package or store needs it.
 
+The companion declares published pages containing the schedule block for GymCore's signed-out offline app; the theme ships no PWA files.
+
 No third-party services, tracking, remote fonts, credentials, or customer data are bundled or transmitted. GymCore itself has separate requirements and terms; this plugin never grants entitlements. This is a private review candidate, not a WordPress.org release or compliance certification.
 
 == Installation ==

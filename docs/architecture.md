@@ -6,6 +6,8 @@ The theme contains only core block markup, translated patterns, theme.json v3 st
 
 The companion plugin registers its one dynamic block via block.json API 3 and a PHP render callback. Its unbundled editor script uses WordPress-provided packages; all source is shipped. `includes/schedule.php` reads published active public recurring classes and public taxonomy names. It never reads users, attendance, bookings, leads, orders, credentials or licensing metadata. The installed GymCore code owns its schema and entitlements. The class existence check and viewable CPT check prevent the adapter from creating a substitute product. Future changes to GymCore's class schema require adapter tests and a new release.
 
+The companion also declares published pages containing the weekly schedule block for GymCore's signed-out offline app; the theme intentionally ships no PWA functionality. See [offline app schedule](offline-app.md).
+
 The schedule lists recurring weekly times, not date-specific availability, booking inventory, cancellations, exceptions, instructor names or entitlement-controlled member schedules. Counts apply to the rendered weekly classes after filtering and validation. One-time/custom recurrence classes are deliberately absent. See the schema note for the exact source baseline and filters.
 
 ## Trust boundaries

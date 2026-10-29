@@ -20,7 +20,7 @@ The theme and draft setup need only WordPress. The schedule needs GymCore's publ
 | Package | Contents | Native editing surface |
 | --- | --- | --- |
 | Theme | Eight templates, header/footer, ten patterns, dark/light styles, responsive core navigation | Site Editor, Global Styles, Navigation, Site Logo |
-| Companion | Weekly schedule API v3 block, fictional draft setup, conservative removal, uninstall preference | Block inspector, Settings API, Pages |
+| Companion | Weekly schedule API v3 block, fictional draft setup, conservative removal, uninstall preference, offline schedule declaration | Block inspector, Settings API, Pages |
 | Development | Reproducible ZIP builder, allowlist/sanitization audit, WordPress coding standards, disposable WordPress tests, least-privilege CI | Local commands and pull-request CI |
 
 The homepage's default copy lives in **Site Editor → Templates → Front Page**. To use a normal Page as the homepage, replace that template's main contents with a Post Content block and select the static page in **Settings → Reading**. This is an editor operation, not a source change.

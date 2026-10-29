@@ -45,6 +45,30 @@ gcs_assert(get_post_status($ids[0]) === 'publish', 'Reset preserves published im
 gcs_assert(get_post_status($ids[1]) === 'draft', 'Reset preserves mismatched ownership');
 gcs_assert(get_post_status($unrelated) === 'draft', 'Reset preserves unrelated draft');
 gcs_assert(GymCoreStarter\import_demo() === $manifest, 'Reset retains manifest; no duplicate reimport');
+gcs_assert(GymCoreStarter\pwa_offline_pages(array()) === array(), 'No published schedule page: no offline page declaration');
+$offline_block_pages = array();
+foreach (array(3, 1, 2) as $menu_order) {
+ $offline_block_pages[$menu_order] = wp_insert_post(array('post_type'=>'page','post_status'=>'publish','post_title'=>'Schedule page '.$menu_order,'post_content'=>'<!-- wp:gymcore-starter/weekly-schedule /-->','menu_order'=>$menu_order));
+}
+$offline_plain_pages = array();
+for ($i = 1; $i <= 25; $i++) {
+ $offline_plain_pages[] = wp_insert_post(array('post_type'=>'page','post_status'=>'publish','post_title'=>sprintf('Blockless page %02d', $i),'post_content'=>'No schedule block.'));
+}
+$offline_pages = GymCoreStarter\pwa_offline_pages(array());
+$expected_offline_pages = array(
+ array('url'=>get_permalink($offline_block_pages[1]),'label'=>'Schedule page 1'),
+ array('url'=>get_permalink($offline_block_pages[2]),'label'=>'Schedule page 2'),
+);
+gcs_assert(count($offline_pages) === 2, 'Offline schedule page declaration is capped at exactly two');
+gcs_assert($offline_pages === $expected_offline_pages, 'First two schedule pages retain query order and correct permalinks despite 25 earlier blockless pages');
+gcs_assert(GymCoreStarter\pwa_offline_pages(array(array('url'=>'/existing/','label'=>'Existing'))) === array_merge(array(array('url'=>'/existing/','label'=>'Existing')), $expected_offline_pages), 'Existing offline pages preserved first');
+$offline_draft = wp_insert_post(array('post_type'=>'page','post_status'=>'draft','post_title'=>'Draft timetable','post_content'=>'<!-- wp:gymcore-starter/weekly-schedule /-->'));
+$offline_private = wp_insert_post(array('post_type'=>'page','post_status'=>'private','post_title'=>'Private timetable','post_content'=>'<!-- wp:gymcore-starter/weekly-schedule /-->'));
+$offline_password = wp_insert_post(array('post_type'=>'page','post_status'=>'publish','post_title'=>'Protected timetable','post_password'=>'secret','post_content'=>'<!-- wp:gymcore-starter/weekly-schedule /-->'));
+$excluded_offline_pages = GymCoreStarter\pwa_offline_pages(array());
+gcs_assert(count($excluded_offline_pages) === 2 && $excluded_offline_pages === $expected_offline_pages, 'Draft, private and password-protected schedule pages excluded');
+gcs_assert(has_filter('gymcore_pwa_offline_pages', 'GymCoreStarter\pwa_offline_pages'), 'GymCore offline pages filter registered');
+foreach (array_merge($offline_block_pages, $offline_plain_pages, array($offline_draft, $offline_private, $offline_password)) as $offline_id) { wp_delete_post($offline_id, true); }
 // A contract fixture, not the GymCore product or an entitlement simulation.
 if (!class_exists('Gym_Core\\Schedule\\ClassPostType')) { eval('namespace Gym_Core\\Schedule; class ClassPostType {}'); }
 register_post_type('gym_class', array('public'=>true));
