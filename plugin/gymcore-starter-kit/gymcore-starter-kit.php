@@ -24,6 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 require_once __DIR__ . '/includes/setup.php';
 require_once __DIR__ . '/includes/schedule.php';
+require_once __DIR__ . '/includes/pwa.php';
 
 /** Register private catalogs on init, before block metadata translation. */
 function load_textdomain(): void {
@@ -36,3 +37,4 @@ add_action( 'admin_init', __NAMESPACE__ . '\\register_settings' );
 add_action( 'admin_post_gcs_import', __NAMESPACE__ . '\\handle_import' );
 add_action( 'admin_post_gcs_reset', __NAMESPACE__ . '\\handle_reset' );
 add_action( 'init', __NAMESPACE__ . '\\schedule_register', 20 );
+add_filter( 'gymcore_pwa_offline_pages', __NAMESPACE__ . '\\pwa_offline_pages' );
